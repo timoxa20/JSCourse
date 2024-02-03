@@ -1,7 +1,7 @@
-let hello = "Hello"
+const hello = "Hello"
 
-function sayHello (name) {
-    return name
+function sayHello (greeting) {
+    return greeting
     
 }
 
