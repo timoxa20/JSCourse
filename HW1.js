@@ -1,10 +1,6 @@
-const hello = "Hello"
+const hello = () => console.log("Hello")
 
-function greetingPerson (greeting) {
-    return greeting
-    
-}
+hello();
 
 
-console.log(sayHello (hello));
 
