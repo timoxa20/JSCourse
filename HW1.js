@@ -1,4 +1,4 @@
-const greetingPerson = () => console.log("Hello Andrei")
+const greetingPerson = () => console.log("Hello, Andrei")
 
 greetingPerson();
 
