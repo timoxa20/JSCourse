@@ -1,6 +1,6 @@
 const hello = "Hello"
 
-function sayHello (greeting) {
+function greetingPerson (greeting) {
     return greeting
     
 }
