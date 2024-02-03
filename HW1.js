@@ -1,6 +1,6 @@
-const hello = () => console.log("Hello")
+const greetingPerson = () => console.log("Hello Andrei")
 
-hello();
+greetingPerson();
 
 
 
