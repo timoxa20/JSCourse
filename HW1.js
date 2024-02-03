@@ -12,4 +12,4 @@ function nextHello () {
     console.log("Hello")
 }
 
-nextHello ()
+nextHello ();
