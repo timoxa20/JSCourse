@@ -8,8 +8,3 @@ function greetingPerson (greeting) {
 
 console.log(sayHello (hello));
 
-function nextHello () {
-    console.log("Hello")
-}
-
-nextHello ();
