@@ -49,7 +49,8 @@ console.log(fruitContainer)
  */
 const yearsOfService = 7;
 const performanceRating = 4;
-const conditionPerformanceRating = 4 || 5;
+const conditionPerformanceRatingFour = 4;
+const conditionPerformanceRatingFive = 5;
 const employeeInfo = {
     keyYearsOfService: yearsOfService,
     keyPerformanceRating: performanceRating,
@@ -58,9 +59,9 @@ const employeeInfo = {
 
 
 
-if (yearsOfService < 5 && conditionPerformanceRating) {
+if (yearsOfService < 5 && conditionPerformanceRatingFour || conditionPerformanceRatingFive) {
     console.log('Ваш бонус составляет 5% от заработной платы')
-} else if (yearsOfService > 5 && conditionPerformanceRating) {
+} else if (yearsOfService > 5 && conditionPerformanceRatingFour || conditionPerformanceRatingFive) {
     console.log('Ваш бонус составляет 10% от заработной платы')
 } else {
     console.log('Бонусов нет')
