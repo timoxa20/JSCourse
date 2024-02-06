@@ -6,14 +6,14 @@ const user = {
 }
 
 
-function changingKey(obj, newKey, number) {     
-   const flutter= Object.entries(obj).map(([key, value]) => [key, value])
-   flutter[number].splice(0,1)
-   flutter[number].unshift(newKey)
-   newKey = Object.fromEntries(flutter)
-   return newKey
+function changingKey(obj, newKey, numbersArray) {
+    const transformationObj = Object.entries(obj).map(([key, value]) => [key, value])
+    transformationObj[numbersArray].splice(0, 1)
+    transformationObj[numbersArray].unshift(newKey)
+    newKey = Object.fromEntries(transformationObj)
+    return newKey
 }
-console.log(changingKey(user, 'firstName',  0 ))
+console.log(changingKey(user, 'firstName', 0))
 // переделайте объект таким образом, чтобы у него было 2 ключа: firstName и age
 
 // 2
@@ -49,17 +49,18 @@ console.log(fruitContainer)
  */
 const yearsOfService = 7;
 const performanceRating = 4;
+const conditionPerformanceRating = 4 || 5;
 const employeeInfo = {
     keyYearsOfService: yearsOfService,
     keyPerformanceRating: performanceRating,
 };
 
-console.log(employeeInfo)
 
 
-if (yearsOfService < 5 && performanceRating == 4 || performanceRating == 5) {
+
+if (yearsOfService < 5 && conditionPerformanceRating) {
     console.log('Ваш бонус составляет 5% от заработной платы')
-} else if (yearsOfService > 5 && performanceRating == 4 || performanceRating == 5) {
+} else if (yearsOfService > 5 && conditionPerformanceRating) {
     console.log('Ваш бонус составляет 10% от заработной платы')
 } else {
     console.log('Бонусов нет')
@@ -91,8 +92,7 @@ const userData2 = {
 }
 
 const data = [userData, userData2]
-console.log(data[1]);
-console.log(data[0]);
+
 
 if (data[2]) {
     console.log("1")
@@ -118,8 +118,8 @@ if (data[2]) {
 // чуть дальше по коду  выполняеться +data[1].age <= 0 унарный плюс выпониться первым и привидет строку к числу
 // потом выполниться сравнение и так как 31 не меньше или равно нулю будет в этом случае false 
 // и так как  && нужно что вы с обоих случаях было tru она не сработает  
-// 4) Сработает потому что const data сделала поверхносную копию для вложенных обьектов этого не достаточно,
-//  нужно использовать либо рекурсию либо цикл for in и в нем опять же делеать перебор с помощью for in
+// 4) Результат typeof null == "object" – это официально признанная ошибка в языке, которая сохраняется для совместимости.
+//  На самом деле null – это не объект, а отдельный тип данных.
 // а до 5 не дойдет
 
 // Что будет выведено в консоли и почему
