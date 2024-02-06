@@ -1,17 +1,19 @@
 // 1
+
 const user = {
     name: "Boris",
-    age: 24
+    age: 24,
 }
 
-function changingKey (obj)  {
-    obj.firstName = obj.name;
-    delete obj.name;
-    return obj
-  }
 
-console.log(changingKey(user));
-
+function changingKey(obj, newKey, number) {     
+   const flutter= Object.entries(obj).map(([key, value]) => [key, value])
+   flutter[number].splice(0,1)
+   flutter[number].unshift(newKey)
+   newKey = Object.fromEntries(flutter)
+   return newKey
+}
+console.log(changingKey(user, 'firstName',  0 ))
 // переделайте объект таким образом, чтобы у него было 2 ключа: firstName и age
 
 // 2
@@ -47,10 +49,22 @@ console.log(fruitContainer)
  */
 const yearsOfService = 7;
 const performanceRating = 4;
+const employeeInfo = {
+    keyYearsOfService: yearsOfService,
+    keyPerformanceRating: performanceRating,
+};
 
-let calculatingBonuses = (yearsOfService < 5 && performanceRating == 4 || performanceRating == 5) ? console.log('Ваш бонус составляет 5% от заработной платы') :
-                         (yearsOfService > 5 && performanceRating == 4 || performanceRating == 5) ? console.log('Ваш бонус составляет 10% от заработной платы'):
-                          console.log('Бонусов нет')
+console.log(employeeInfo)
+
+
+if (yearsOfService < 5 && performanceRating == 4 || performanceRating == 5) {
+    console.log('Ваш бонус составляет 5% от заработной платы')
+} else if (yearsOfService > 5 && performanceRating == 4 || performanceRating == 5) {
+    console.log('Ваш бонус составляет 10% от заработной платы')
+} else {
+    console.log('Бонусов нет')
+}
+
 
 
 // 4
@@ -93,10 +107,18 @@ if (data[2]) {
 }
 
 // Выведенно будет 4 как минимум отому что я запустил код  
-// 1) data[2] не сработает потому что в массиве начинаеться отчёт с 0 
-// 2) Условие не сработает потому что "&&" запинаеться на лжи а первое же условие не верно потому что там число а там строка
-// 3) Не сработает потому что 31 не меньше 0 
-// 4) Сработает потому что сонстанта дата сделала поверхносную копию для вложенных обьектов этого не достаточно,
+// 1) data[2] не сработает потому что в массиве начинаеться отчёт с 0 тоесть userData = 0, userData2 = 1
+// третьего элемента в массиве нету
+// 2) Условие не сработает потому что "&&" запинаеться на лжи  все аргументы должны быть tru первое же 
+// выражение равно false "data[0].age === data[1].age" а так как у && приоритет выше чем у "||" то 
+// && выполнеться первее 
+// 3) Влевой части typeof data[0].name === "string" 
+// typeof определяет тип парамерта на строгое сравнение параметр = "string" который и 
+// являеться typeof data[0].name
+// чуть дальше по коду  выполняеться +data[1].age <= 0 унарный плюс выпониться первым и привидет строку к числу
+// потом выполниться сравнение и так как 31 не меньше или равно нулю будет в этом случае false 
+// и так как  && нужно что вы с обоих случаях было tru она не сработает  
+// 4) Сработает потому что const data сделала поверхносную копию для вложенных обьектов этого не достаточно,
 //  нужно использовать либо рекурсию либо цикл for in и в нем опять же делеать перебор с помощью for in
 // а до 5 не дойдет
 
@@ -124,19 +146,18 @@ if (data[2]) {
 const programmingLanguage = "JavaScript";
 
 switch (programmingLanguage) {
-    case "JavaScript": 
+    case "JavaScript":
         console.log("JavaScript - отличный выбор для веб-разработки!");
         break;
-    case "Python": 
+    case "Python":
         console.log("Python - мощный и удобный язык для разработки.");
-        break;  
-    case "Java": 
+        break;
+    case "Java":
         console.log("Java - популярный язык для разработки кросс-платформенных приложений.");
         break;
-    case "C++": 
+    case "C++":
         console.log("C++ - язык с высокой производительностью и возможностями низкоуровневого программирования.");
-        break;   
+        break;
     default:
-        ("К сожалению нет такого языка в списке")       
+        ("К сожалению нет такого языка в списке")
 }
-       
