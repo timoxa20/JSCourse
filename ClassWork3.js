@@ -6,7 +6,7 @@ function getTimeOfDay (time) {
     } else if( time <=20) {
         return console.log("Вечер")
     } else  {
-        return console.log("Вечер")
+        return console.log("Ночь")
     }
 }
 
