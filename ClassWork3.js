@@ -38,7 +38,7 @@ while (getNumber <= 20) {
 }
 // 3)
 function formatPhoneNumber(str) {
-    return str = '(' + str.slice(0, 3) + ')' + ' ' + str.slice(3, 6) + '-' + str.slice(6, str.length)
+    return '(' + str.slice(0, 3) + ')' + ' ' + str.slice(3, 6) + '-' + str.slice(6, str.length)
 
 }
 console.log(formatPhoneNumber("1234567890"))
