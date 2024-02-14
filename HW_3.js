@@ -127,40 +127,40 @@ console.log(processText("Another Example"));
  */
 
 function encodeString(encodeStr, key) {
+   const notEncodeChar = [',', ' ', '!']
    let resultStr = '';
-   let indexingCodeUnits = '';
-   let StringCodeUnits = '';
+   let indexingCodeUnit = '';
+   let stringCodeUnit = '';
    for (let char of encodeStr) {
-      if (char === ',' || char === ' ' || char === '!') {
+      if (notEncodeChar.includes(char)) {
          resultStr += char
       } else {
-         indexingCodeUnits = (char.charCodeAt() + key)
-         StringCodeUnits = String.fromCharCode(indexingCodeUnits)
-         resultStr += StringCodeUnits + '';
-         encodeStr = resultStr
+         indexingCodeUnit = (char.charCodeAt() + key)
+         stringCodeUnit = String.fromCharCode(indexingCodeUnit)
+         resultStr += stringCodeUnit;
       }
    }
-   return encodeStr
+   return resultStr
 }
 
 console.log(encodeString("Hello, World!", 6))
 
 
 function decodeString(decodeString, key) {
+   const notEncodeChar = [',', ' ', '!']
    let resultStr = '';
-   let indexingCodeUnits = '';
-   let StringCodeUnits = '';
+   let indexingCodeUnit = '';
+   let stringCodeUnit = '';
    for (let char of decodeString) {
-      if (char === ',' || char === ' ' || char === '!') {
+      if (notEncodeChar.includes(char)) {
          resultStr += char
       } else {
-         indexingCodeUnits = (char.charCodeAt() - key)
-         StringCodeUnits = String.fromCharCode(indexingCodeUnits)
-         resultStr += StringCodeUnits + '';
-         decodeString = resultStr
+         indexingCodeUnit = (char.charCodeAt() - key)
+         stringCodeUnit = String.fromCharCode(indexingCodeUnit)
+         resultStr += stringCodeUnit;
       }
    }
-   return decodeString
+   return resultStr
 }
 console.log(decodeString("Nkrru, ]uxrj", 6))
 
