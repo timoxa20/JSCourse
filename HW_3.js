@@ -164,14 +164,3 @@ function decodeString(decodeString, key) {
 }
 console.log(decodeString("Nkrru, ]uxrj", 6))
 
-
-function encode_string(str, key) {
-   let encode = ''
-   for (let i = 0; i < str.length; i++) {
-      let strCode = str.charCodeAt(i)
-      encode += String.fromCharCode(strCode + key)
-   }
-   return encode
-}
-console.log(encode_string('helloo, World ', 4))
-
