@@ -1,5 +1,3 @@
-let globalLowerCaseString = str.toLowerCase()
-
 // 1. Напишите функцию, которая принимает в себя строку в виде аргумента и возвращает true,
 //  если функции палиндром. Палиндром - строка, которая читается с конца так же, как и с начала. 
 //  Условие - должны учитываться только буквы без знаков препинания. 
@@ -55,7 +53,6 @@ function getSortString(str) {
         } else {
             iteratingOverLine.push(char)
         }
-
     }
     returnSortedLine = iteratingOverLine.sort().join()
     return returnSortedLine.replace(/,/g, '')
