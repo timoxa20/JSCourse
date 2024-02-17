@@ -71,13 +71,13 @@ function getIndexOfNonRepeatingValue(str) {
     for (let i = 0; i < returnLowerCaseString.length; i++) {
         let indexingString = returnLowerCaseString.charAt(i);
         if (returnLowerCaseString.indexOf(indexingString) === returnLowerCaseString.lastIndexOf(indexingString)) {
-            return indexingString;
+            return returnLowerCaseString.indexOf(indexingString) ;
         }
     }
     return null;
 }
 
-console.log(getIndexOfNonRepeatingValue('Фывфа,выапрс'))
+console.log(getIndexOfNonRepeatingValue('фывфавыапрс'))
 
 
 // 5. Напишите функцию, которая принимает строку в качестве параметра и возвращает количество гласных в строке.
