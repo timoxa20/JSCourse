@@ -67,7 +67,7 @@ console.log(getSortString('alphab,etical!'))
 
 
 function getIndexOfNonRepeatingValue(str) {
-    let returnLowerCaseString = str.toLowerCase()
+    let returnLowerCaseString = str.replace(/,/g, '').toLowerCase()
     for (let i = 0; i < returnLowerCaseString.length; i++) {
         let indexingString = returnLowerCaseString.charAt(i);
         if (returnLowerCaseString.indexOf(indexingString) == i && returnLowerCaseString.indexOf(indexingString, i + 1) == -1) {
@@ -77,7 +77,7 @@ function getIndexOfNonRepeatingValue(str) {
     return null;
 }
 
-console.log(getIndexOfNonRepeatingValue('Фывфа,выап,рс'))
+console.log(getIndexOfNonRepeatingValue('Фывфа,выапрс'))
 
 
 // 5. Напишите функцию, которая принимает строку в качестве параметра и возвращает количество гласных в строке.
