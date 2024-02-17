@@ -84,10 +84,9 @@ console.log(getIndexOfNonRepeatingValue('фывфавыапрс'))
 //     f('Web Development Tutorial')); //9
 
 function getNumberVowelsString(str) {
-    const vowels = /[aeiou]/gi
-
+    const vowels = /[aeiou]/gi;
     let result = str.matchAll(vowels);
-    return result = Array.from(result).length
+    return result = Array.from(result).length;
 }
 
 console.log(getNumberVowelsString('Web Development, Tutorial'))
