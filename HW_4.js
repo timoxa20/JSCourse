@@ -67,16 +67,17 @@ console.log(getSortString('alphab,etical!'))
 
 
 function getIndexOfNonRepeatingValue(str) {
-    for (let i = 0; i < str.length; i++) {
-        let indexingString = str.charAt(i);
-        if (str.indexOf(indexingString) == i && str.indexOf(indexingString, i + 1) == -1) {
+    let returnLowerCaseString = str.toLowerCase()
+    for (let i = 0; i < returnLowerCaseString.length; i++) {
+        let indexingString = returnLowerCaseString.charAt(i);
+        if (returnLowerCaseString.indexOf(indexingString) == i && returnLowerCaseString.indexOf(indexingString, i + 1) == -1) {
             return indexingString;
         }
     }
     return null;
 }
 
-console.log(getIndexOfNonRepeatingValue('фывфавыапрс'))
+console.log(getIndexOfNonRepeatingValue('Фывфа,выап,рс'))
 
 
 // 5. Напишите функцию, которая принимает строку в качестве параметра и возвращает количество гласных в строке.
@@ -89,4 +90,4 @@ function getNumberVowelsString(str) {
     return result = Array.from(result).length
 }
 
-console.log(getNumberVowelsString('Web Development Tutorial'))
+console.log(getNumberVowelsString('Web Development, Tutorial'))
