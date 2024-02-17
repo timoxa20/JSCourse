@@ -70,7 +70,7 @@ function getIndexOfNonRepeatingValue(str) {
     let returnLowerCaseString = str.replace(/,/g, '').toLowerCase()
     for (let i = 0; i < returnLowerCaseString.length; i++) {
         let indexingString = returnLowerCaseString.charAt(i);
-        if (returnLowerCaseString.indexOf(indexingString) == i && returnLowerCaseString.indexOf(indexingString, i + 1) == -1) {
+        if (returnLowerCaseString.indexOf(indexingString) === returnLowerCaseString.lastIndexOf(indexingString)) {
             return indexingString;
         }
     }
