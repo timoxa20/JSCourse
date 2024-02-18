@@ -1,3 +1,11 @@
+function getsortString(str) {
+    if (typeof str === 'string') {
+        const regex = /[^\w\s]|_/g;
+        return str.replace(regex, '').replaceAll(' ', '').toLowerCase()
+    }
+
+
+}
 // 1. Напишите функцию, которая принимает в себя строку в виде аргумента и возвращает true,
 //  если функции палиндром. Палиндром - строка, которая читается с конца так же, как и с начала. 
 //  Условие - должны учитываться только буквы без знаков препинания. 
@@ -5,9 +13,8 @@
 // f("tenet!") // true
 
 function checkStringByCylinder(str) {
-    const regex = /[^\w\s]|_/g;
     let lineReversal = '';
-    str = str.replace(regex, '').replaceAll(' ', '').toLowerCase()
+    str = getsortString(str)
     lineReversal = str.split('').reverse().join('')
     return str === lineReversal
 }
@@ -42,17 +49,11 @@ console.log(getLongWord('The quick, brown'))
 
 
 function getSortString(str) {
-    const notEncodeChar = [',', ' ', '!']
-    let returnLowerCaseString = '';
     let iteratingOverLine = [];
     let returnSortedLine = '';
-    returnLowerCaseString = str.toLowerCase()
-    for (let char of returnLowerCaseString) {
-        if (notEncodeChar.includes(char)) {
-            continue
-        } else {
-            iteratingOverLine.push(char)
-        }
+    str = getsortString(str)
+    for (let char of str) {
+        iteratingOverLine.push(char)
     }
     returnSortedLine = iteratingOverLine.sort().join()
     return returnSortedLine.replace(/,/g, '')
@@ -67,11 +68,13 @@ console.log(getSortString('alphab,etical!'))
 
 
 function getIndexOfNonRepeatingValue(str) {
-    let returnLowerCaseString = str.replace(/,/g, '').toLowerCase()
+    const returnLowerCaseString = str.replace(/,/g, '').toLowerCase()
     for (let i = 0; i < returnLowerCaseString.length; i++) {
-        let indexingString = returnLowerCaseString.charAt(i);
-        if (returnLowerCaseString.indexOf(indexingString) === returnLowerCaseString.lastIndexOf(indexingString)) {
-            return returnLowerCaseString.indexOf(indexingString) ;
+        const indexingString = returnLowerCaseString.charAt(i);
+        const leftString = returnLowerCaseString.indexOf(indexingString);
+        const rightString = returnLowerCaseString.lastIndexOf(indexingString);
+        if (leftString === rightString) {
+            return leftString;
         }
     }
     return null;
