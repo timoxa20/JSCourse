@@ -61,13 +61,13 @@ function formatDate(data) {
     const formatedHours = (hours < 10) ? '0' + hours : hours
     const formatedMinutes = (minutes < 10) ? '0' + minutes : minutes
     const formatedSeconds = (seconds < 10) ? '0' + seconds : seconds
-    const topData = formatedDay + ':' +
+    const showData = formatedDay + ':' +
         formatedMonth + ':' +
         fullYear + ', ' +
         formatedHours + ':' +
         formatedMinutes + ':' +
         formatedSeconds
-    return topData
+    return showData
 }
 
 console.log(formatDate(new Date()))
@@ -97,8 +97,8 @@ const userTwo = {
 
 function customAssign(target, source) {
     let lengthObjSours = Object.values(source).length
-    const formatedUserOne = Object.assign(target, source)
-    const arrayObj = Object.entries(formatedUserOne)
+    const mergeObj = Object.assign(target, source)
+    const arrayObj = Object.entries(mergeObj)
     Object.fromEntries(arrayObj.splice(-lengthObjSours, lengthObjSours))
     target = arrayObj
     return target
