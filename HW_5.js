@@ -225,10 +225,11 @@ console.log(newUser) // {firstName: "Boris", age: 24}
 */
 
 const user = {
-  userName: "Boris",
+  name: "Boris",
   age: 24
 }
 
-const newUser = {name: firstName, age} = user
+const { name: firstName, age } = user;
+const newUser = { firstName, age }
 
 console.log(newUser) // {firstName: "Boris", age: 24}
