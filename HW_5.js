@@ -26,16 +26,17 @@ const students = [
     { name: 'Nick', grades: [70, 90, 83] },
 ];
 
+
 const addAverageGrade = students.map(element => {
-    return element.averageGrade = element.grades.reduce((total, count) => (total + count) / element.grades.length)
+    const result = element.grades.reduce( (total, count) => (total + count) )
+    return element.averageGrade = result / element.grades.length
 })
+
 const sortStudentsAverageGrade = students.sort((a, b) => a.averageGrade - b.averageGrade)
 const topStudents = [...sortStudentsAverageGrade].splice(-3)
-
 console.log(students)
 console.log(sortStudentsAverageGrade)
 console.log(topStudents)
-
 //2
 /*
 Давайте создадим собственный кастомный метод массива с именем findAndPush,
@@ -98,7 +99,7 @@ console.log(difference);
 const startDate = new Date(2023, 0, 1, 23, 0, 0); // 1 января 2023 года, 12:00:00
 const endDate = new Date(2024, 5, 15, 18, 30, 45); // 15 июня 2024 года, 18:30:45
 
-function dateDifference(date1, date2) {
+function dateDifference(deductibleDateOne, deductibleDateTwo) {
     let differenceFullYear = date2.getFullYear() - date1.getFullYear();
     let differenceMonth = date2.getMonth() - date1.getMonth();
     let differenceDay = date2.getDate() - date1.getDate();
