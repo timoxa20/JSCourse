@@ -58,7 +58,7 @@ console.log(result); // true, так как 3 был найден и перем�
 console.log(myArray); // [1, 2, 4, 5, 3]
 */
 const myArray = [1, 2, 3, 4, 5]
-Array.prototype.findAndPush = function (searchElement) {
+Array.prototype.findAndPush = function(searchElement) {
   let removeSearchElement = this.filter(element => element !== searchElement)
   let newArray = [...removeSearchElement, searchElement]
   return newArray.includes(searchElement)
@@ -229,7 +229,7 @@ const user = {
   age: 24
 }
 
-const { name: firstName, age } = user;
-const newUser = { firstName, age }
+const {name:firstName, age} = user;
+const newUser = {firstName, age}
 
 console.log(newUser) // {firstName: "Boris", age: 24}
