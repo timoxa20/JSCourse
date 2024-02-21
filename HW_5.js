@@ -183,10 +183,16 @@ const student = {
 
 function printStudentInfo(student) {
   let { name, age, grade, address: { city, zip }, hobbies: [hobbies1, hobbies2] } = student
-  return `Student: ${name}, Age: ${age}, Grade: ${grade}, City: ${city}, Zip: ${zip}, Hobbies: ${hobbies1}, ${hobbies2}`
+  return `
+  Student: ${name}, 
+  Age: ${age}, 
+  Grade: ${grade},
+  City: ${city}, 
+  Zip: ${zip}, 
+  Hobbies: ${hobbies1}, ${hobbies2}`
 }
 
-console.log(printStudentInfo(student))
+console.log( printStudentInfo(student) )
 
 
 
