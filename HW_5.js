@@ -33,7 +33,7 @@ const addAverageGrade = students.map(element => {
 })
 
 const sortStudentsAverageGrade = students.sort((a, b) => a.averageGrade - b.averageGrade)
-const topStudents = [...sortStudentsAverageGrade].splice(-3)
+const topStudents = [...sortStudentsAverageGrade].splice(-3).reverse()
 console.log(students)
 console.log(sortStudentsAverageGrade)
 console.log(topStudents)
