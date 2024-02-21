@@ -235,7 +235,7 @@ const user = {
   age: 24
 }
 
-const {name:firstName, age} = user;
-const newUser = {firstName, age}
+const { name:firstName, age } = user;
+const newUser = { firstName, age }
 
-console.log(newUser) // {firstName: "Boris", age: 24}
+console.log(newUser)
