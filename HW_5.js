@@ -100,44 +100,23 @@ const startDate = new Date(2023, 0, 1, 23, 0, 0); // 1 января 2023 год�
 const endDate = new Date(2024, 5, 15, 18, 30, 45); // 15 июня 2024 года, 18:30:45
 
 function dateDifference(deductibleDateOne, deductibleDateTwo) {
-    let differenceFullYear = date2.getFullYear() - date1.getFullYear();
-    let differenceMonth = date2.getMonth() - date1.getMonth();
-    let differenceDay = date2.getDate() - date1.getDate();
-    let differenceHours = date2.getHours() - date1.getHours();
-    let differenceMinutes = date2.getMinutes() - date1.getMinutes();
-    let differenceSeconds = date2.getSeconds() - date1.getSeconds();
-    if (differenceSeconds < 0) {
-        differenceMinutes--;
-        differenceSeconds += 60;
-    }
-    if (differenceMinutes < 0) {
-        differenceHours--;
-        differenceMinutes += 60;
-    }
-    if (differenceHours < 0) {
-        differenceDay--;
-        differenceHours += 24;
-    }
-    if (differenceDay < 0) {
-        differenceMonth--;
-        const prevMonthLastDay = new Date(date2.getFullYear(), date2.getMonth(), 0).getDate();
-        differenceDay += prevMonthLastDay;
-    }
-    if (differenceMonth < 0) {
-        differenceFullYear--;
-        differenceMonth += 12;
-    }
-    const result = `{
-      years: ${differenceFullYear},
-      months: ${differenceMonth},
-      days: ${differenceDay},
-      hours: ${differenceHours},
-      minutes: ${differenceMinutes},
-      seconds: ${differenceSeconds}
-    }`
-    return result
-}
+    const differenceInSeconds =  deductibleDateTwo.getTime() - deductibleDateOne.getTime()
+    const seconds = Math.floor(differenceInSeconds / 1000) % 60;
+    const minutes = Math.floor(differenceInSeconds / (1000 * 60)) % 60;
+    const hours = Math.floor(differenceInSeconds / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(differenceInSeconds / (1000 * 60 * 60 * 24)) % 30;
+    const months = Math.floor(differenceInSeconds / (1000 * 60 * 60 * 24 * 30)) % 12;
+    const years = Math.floor(differenceInSeconds / (1000 * 60 * 60 * 24 * 30 * 12));
 
+    return {
+        years,
+        months,
+        days,
+        hours,
+        minutes,
+        seconds
+    };
+}
 const difference = dateDifference(startDate, endDate);
 console.log(difference)
 
