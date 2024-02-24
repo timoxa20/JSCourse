@@ -138,6 +138,9 @@ const usersURL = 'https://jsonplaceholder.typicode.com/users';
 async function fetchUsers() {
     try {
         const response = await fetch(usersURL)
+        if (!response.ok) {
+            throw new Error('Данное направление недоступно')
+        }
         return await response.json()
     } catch (error) {
         throw error
@@ -174,28 +177,34 @@ const postsDataURL = 'https://jsonplaceholder.typicode.com/posts';
 async function loadUserData() {
     try {
         const response = await fetch(usersDataURL)
+        if (!response.ok) {
+            throw new Error('Данное направление недоступно')
+        }
         return await response.json()
-    } catch (e) {
-        console.log(e)
+    } catch (error) {
+        throw error
     }
 }
 async function loadPostsData() {
     try {
         const response = await fetch(postsDataURL)
+        if (!response.ok) {
+            throw new Error('Данное направление недоступно')
+        }
         return await response.json()
-    } catch (e) {
-        console.log(e)
+    } catch (error) {
+        throw error
     }
 }
 
- Promise.all([loadUserData(), loadPostsData()])
-     .then(([userData, postsData]) => {
-         console.log('Данные о пользователях:', userData);
-         console.log('Данные о постах:', postsData);
-     })
+Promise.all([loadUserData(), loadPostsData()])
+    .then(([userData, postsData]) => {
+        console.log('Данные о пользователях:', userData);
+        console.log('Данные о постах:', postsData);
+    })
     .catch(error => {
-         console.error('Ошибка при загрузке данных:', error);
-     });
+        console.error('Ошибка при загрузке данных:', error);
+    });
 Promise.race([loadUserData(), loadPostsData()])
     .then(result => {
         console.log('Данные о пользователях:', result);
@@ -210,30 +219,33 @@ Promise.race([loadUserData(), loadPostsData()])
 Раз в полсекунды отправляйте рандомный запрос на сервер (либо /users, либо /posts)
 */
 
-const fetchWayURL = 'https://jsonplaceholder.typicode.com'
+const fetchPathURL = 'https://jsonplaceholder.typicode.com'
 const posts = "/posts"
 const users = "/users"
 
 function DDosFetch(url) {
     return async function (path) {
         try {
-            const respons = await fetch(url + path)
-            return await respons.json()
+            const response = await fetch(url + path)
+            if (!response.ok) {
+                throw new Error('Данное направление недоступно')
+            }
+            return await response.json()
         } catch (error) {
-            throw error
+          throw  error
         }
     }
 }
 
 setInterval(() => {
-    const usersWay = DDosFetch(fetchWayURL);
+    const usersWay = DDosFetch(fetchPathURL);
     console.log(usersWay(users))
 }, 500)
 
 
 setTimeout(() => {
     setInterval(() => {
-        const postWay = DDosFetch(fetchWayURL);
+        const postWay = DDosFetch(fetchPathURL);
         console.log(postWay(posts));
     }, 500);
 }, 250);
