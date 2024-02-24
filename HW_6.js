@@ -216,9 +216,9 @@ const posts = "/posts"
 const users = "/users"
 
 function DDosFetch(url) {
-    return async function (way) {
+    return async function (path) {
         try {
-            const respons = await fetch(url + way)
+            const respons = await fetch(url + path)
             return await respons.json()
         } catch (error) {
             throw error
