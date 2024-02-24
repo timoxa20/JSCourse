@@ -188,14 +188,14 @@ async function loadPostsData() {
     }
 }
 
-// Promise.all([loadUserData(), loadPostsData()])
-//     .then(([userData, postsData]) => {
-//         console.log('Данные о пользователях:', userData);
-//         console.log('Данные о постах:', postsData);
-//     })
-//     .catch(error => {
-//         console.error('Ошибка при загрузке данных:', error);
-//     });
+ Promise.all([loadUserData(), loadPostsData()])
+     .then(([userData, postsData]) => {
+         console.log('Данные о пользователях:', userData);
+         console.log('Данные о постах:', postsData);
+     })
+    .catch(error => {
+         console.error('Ошибка при загрузке данных:', error);
+     });
 Promise.race([loadUserData(), loadPostsData()])
     .then(result => {
         console.log('Данные о пользователях:', result);
