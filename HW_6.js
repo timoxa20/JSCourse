@@ -133,7 +133,7 @@ loadsUserData()
 //3
 // Переписать loadUserData с помощью async/await
 
-const usersURL = 'https://jsonplacecvcxholder.typicode.com/users';
+const usersURL = 'https://jsonplaceholder.typicode.com/users';
 
 async function fetchUsers() {
     try {
@@ -176,7 +176,7 @@ async function loadUserData() {
         const response = await fetch(usersDataURL)
         return await response.json()
     } catch (e) {
-        throw console.log(e)
+        console.log(e)
     }
 }
 async function loadPostsData() {
@@ -184,22 +184,21 @@ async function loadPostsData() {
         const response = await fetch(postsDataURL)
         return await response.json()
     } catch (e) {
-        throw console.log(e)
+        console.log(e)
     }
 }
 
-Promise.all([loadUserData(), loadPostsData()])
-    .then(([userData, postsData]) => {
-        console.log('Данные о пользователях:', userData);
-        console.log('Данные о постах:', postsData);
-    })
-    .catch(error => {
-        console.error('Ошибка при загрузке данных:', error);
-    });
+// Promise.all([loadUserData(), loadPostsData()])
+//     .then(([userData, postsData]) => {
+//         console.log('Данные о пользователях:', userData);
+//         console.log('Данные о постах:', postsData);
+//     })
+//     .catch(error => {
+//         console.error('Ошибка при загрузке данных:', error);
+//     });
 Promise.race([loadUserData(), loadPostsData()])
-    .then(([userData, postsData]) => {
-        console.log('Данные о пользователях:', userData);
-        console.log('Данные о постах:', postsData);
+    .then(result => {
+        console.log('Данные о пользователях:', result);
     })
     .catch(error => {
         console.error('Ошибка при загрузке данных:', error);
