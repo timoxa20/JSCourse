@@ -49,7 +49,7 @@ const formattedDate = formatDate(currentDate);
 
 function formatDate(data) {
     const currentDate = data;
-    const day = currentDate.getDay()
+    const day = currentDate.getDate()
     const month = currentDate.getMonth()
     const fullYear = currentDate.getFullYear()
     const hours = currentDate.getHours()
