@@ -15,6 +15,10 @@ const a8: [number[], Array<string>] = [[1, 2, 3], ['Home', 'Homic', 'Grid']]
 const b1: number = 70;
 const b2: boolean = false;
 const b3: string = "lalaka";
-const b4: [boolean,boolean] = [true, false];
+const b4: [boolean, boolean] = [true, false];
 const b6: [number, string] = [10, "10"];
 const b7: boolean[] = [...[true]];
+
+function getMaxValue<T>(array: T[]) {
+ 
+}
