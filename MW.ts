@@ -1,5 +1,32 @@
 //Напищите интерфейсы и типы для приходящих данных с сервера
+interface IGeo {
+    lat: number;
+    lng: number;
+}
 
+interface IAddress {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: number;
+    geo: IGeo;
+}
+
+interface ICompany {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
+interface IUser {
+    id: number;
+    name: string;
+    username: string;
+    address: IAddress;
+    phone: string; // Поменял на string, так как номер телефона может содержать не только числа
+    website: string;
+    company: ICompany;
+}
 const response = `[
     {
         "id": 1,
