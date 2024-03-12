@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html{
     box-sizing: border-box;
 }
@@ -117,3 +118,124 @@ ul{
     font-size: 20px;
 }
 
+=======
+html{
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+}
+
+.header{
+    background: teal;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header__list{
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 0 65px;
+}
+
+.section__inner{
+    margin-top: 50px;
+}
+.section__name-user{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.section__info{
+    display: flex;
+}
+
+.info__list{
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid teal;
+}
+.info__list-text{
+    margin-right: 10px;
+}
+
+.section__info-img{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.section__info-img img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.skils{
+    margin-top: 50px;
+}
+
+.skils__inner{
+    gap: 0 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.skils__inner-list{
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.skils__inner-img{
+    width: 300px;
+    height: 300px;
+}
+
+.skils__inner-link{
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: absolute;
+    background: #fff;
+    border: 1px solid teal;
+    padding: 5px 7px;
+    border-radius: 10%;
+    font-size: 20px;
+    transform: translate(0, 150px);
+}
+
+.skils__inner-list:hover .skils__inner-link{
+    opacity: 1;
+}
+
+.skils__inner-text{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+>>>>>>> origin/main
