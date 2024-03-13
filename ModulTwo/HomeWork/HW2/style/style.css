@@ -126,13 +126,28 @@ ul {
     gap: 30px 0;
 }
 
-.welcome{
+.welcome{ position: relative;
     background-image: url("../img/Welcome.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 600px;
 }
 
+
+.welcome__text {
+    position: absolute;
+    padding: 35px 40px;
+    background-color: #0C0C0E;
+    font-size: 40px;
+    line-height: 50px;
+    width: 600px;
+    height: 220px;
+    color: #fff;
+    letter-spacing: 3px;
+    text-align: center;
+    bottom: 168px;
+    left: -44px;
+}
 
 .about {
     padding: 20px 0;
@@ -163,10 +178,11 @@ ul {
     font-size: 20px;
     margin-bottom: 20px;
     font-weight: normal;
+    padding-top: 10px;
 }
 
 .about__slider-inner {
-    padding: 20px 0 40px;
+    padding: 0 0 40px;
 }
 
 .about__slider-box {
@@ -214,7 +230,7 @@ ul {
 .footer__top {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0 30px;
+    padding: 20px 20px 30px;
     border-bottom: 1px solid #fff;
     font-family: "Inter", sans-serif;
     font-size: 15px;
@@ -236,7 +252,7 @@ ul {
     font-family: "Inter", sans-serif;
     display: flex;
     justify-content: space-between;
-    padding: 44px 0;
+    padding: 48px 20px;
     font-size: 22px;
     font-weight: normal;
     line-height: 20px;
