@@ -80,49 +80,44 @@
                             <img src="img/burger.png">
                         </button>
                     </div>
-                    <ul class="header__mobile-list">
-                        <li class="header__list-item">
-                            <a class="header__list-link" href="#about">
-                                About
-                            </a>
-                        </li>
-                        <li class="header__list-item">
-                            <a class="header__list-link" href="#">
-                                Favorites
-                            </a>
-                        </li>
-                        <li class="header__list-item">
-                            <a class="header__list-link" href="#">
-                                Coffee shop
-                            </a>
-                        </li>
-                        <li class="header__list-item">
-                            <a class="header__list-link" href="#">
-                                Contacts
-                            </a>
-                        </li>
-                        <li class="header__list-item">
-                            <a class="header__list-link" href="#">
-                                Library Card
-                            </a>
-                        </li>
-                    </ul>
+                    <nav>
+                        <ul class="header__mobile-list">
+                            <li class="header__list-item">
+                                <a class="header__list-link" href="#about">
+                                    About
+                                </a>
+                            </li>
+                            <li class="header__list-item">
+                                <a class="header__list-link" href="#">
+                                    Favorites
+                                </a>
+                            </li>
+                            <li class="header__list-item">
+                                <a class="header__list-link" href="#">
+                                    Coffee shop
+                                </a>
+                            </li>
+                            <li class="header__list-item">
+                                <a class="header__list-link" href="#">
+                                    Contacts
+                                </a>
+                            </li>
+                            <li class="header__list-item">
+                                <a class="header__list-link" href="#">
+                                    Library Card
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<section class="welcome">
-    <div class="container">
-        <div class="welcome__text">
-            Welcome
-            to the Brooklyn Library
-        </div>
-    </div>
-</section>
 
-<section id="about" class="about">
+<main id="about" class="about">
     <div class="container">
         <div class="about__about">
             <div class="about__about-text">
@@ -130,9 +125,9 @@
             </div>
             <div class="about__about-line"></div>
         </div>
-        <div class="about__text">
+        <h2 class="about__text">
             The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
-        </div>
+        </h2>
         <div class="about__slider">
             <div class="about__slider-inner">
                 <div class="about__slider-box">
@@ -152,32 +147,46 @@
                 </div>
             </div>
             <div class="about__slider-dots">
-                <div class="about__slide-dot active"></div>
-                <div class="about__slide-dot"></div>
-                <div class="about__slide-dot"></div>
+                <div class="slider__dots">
+                    <div class="about__slide-dot active"></div>
+                </div>
+                <div class="slider__dots">
+                    <div class="about__slide-dot"></div>
+                </div>
+                <div class="slider__dots">
+                    <div class="about__slide-dot"></div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</main>
 
 <footer class="footer">
     <div class="container">
         <div class="footer__top">
             <div class="footer__top-left">
                 <div class="footer__top-text">
-                    286 Cadman Plaza, New York, <br> NY 11238, United States
-                </div>
-                <div class="footer__top-icons">
-                    <a class="footer__top-twitter" href="">
-                        <img src="./img/u_twitter-alt.png" alt="">
-                    </a>
-                    <a class="footer__top-instagram" href="">
-                        <img src="./img/u_instagram.png" alt="">
-                    </a>
-                    <a class="footer__top-facebook" href="">
-                        <img src="./img/u_facebook-f.png" alt="">
+                    <a href="https://yandex.ru/maps/geo/1508545150/?ll=29.482233%2C46.904477&z=13">
+                        286 Cadman Plaza, New York, <br> NY 11238, United States
                     </a>
                 </div>
+                <ul class="footer__top-icons">
+                    <li>
+                        <a class="footer__top-twitter" href="https://twitter.com/?lang=ru">
+                            <img src="./img/u_twitter-alt.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="footer__top-instagram" href="https://www.instagram.com/">
+                            <img src="./img/u_instagram.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="footer__top-facebook" href="https://www.facebook.com/?locale=ru_RU">
+                            <img src="./img/u_facebook-f.svg" alt="">
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="footer__top-right">
                 <div class="footer__top-time">

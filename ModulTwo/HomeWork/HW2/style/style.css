@@ -23,9 +23,12 @@ ul {
 }
 
 .header {
-    background-color: #0C0C0E;
     padding: 20px;
     color: #fff;
+    height: 690px;
+    background-image: url("../img/Welcome.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
@@ -53,6 +56,11 @@ ul {
 .header__list-item {
     display: flex;
     align-items: center;
+    transition: all 0.2s;
+}
+
+.header__list-item:hover {
+    color: #BB945F;
 }
 
 .header__list-link {
@@ -117,12 +125,6 @@ ul {
     gap: 30px 0;
 }
 
-.welcome {
-    height: 600px;
-    background-image: url("../img/Welcome.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .about {
     padding: 20px 0;
@@ -149,6 +151,7 @@ ul {
 .about__text {
     font-family: "Inter", sans-serif;
     text-align: center;
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
@@ -170,16 +173,19 @@ ul {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    margin-left: 8px;
-    background-color: #000
+    background-color: #000;
+    margin: 4px auto;
+    cursor: pointer;
 }
 
 .active {
     background-color: #BB945F;
 }
 
-.active-box {
-    display: flex;
+.slider__dots {
+    width: 26px;
+    height: 26px;
+    border-radius: 50px;
 }
 
 .footer {
@@ -194,6 +200,10 @@ ul {
     border-bottom: 1px solid #fff;
     font-family: "Inter", sans-serif;
     font-size: 15px;
+}
+
+.footer__top-text {
+    cursor: pointer;
 }
 
 .footer__top-time--work {
