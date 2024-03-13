@@ -25,10 +25,7 @@ ul {
 .header {
     padding: 20px;
     color: #fff;
-    height: 690px;
-    background-image: url("../img/Welcome.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #0C0C0E;
 }
 
 .container {
@@ -46,11 +43,14 @@ ul {
 .header__inner-text {
     font-size: 30px;
     font-weight: 400;
+    line-height: 50px;
 }
 
 .header__inner-list {
     display: flex;
     gap: 0 30px;
+    line-height: 50px;
+    font-family: "Inter", sans-serif;
 }
 
 .header__list-item {
@@ -69,6 +69,7 @@ ul {
 }
 
 .header__list-icons {
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 40px;
 }
@@ -125,6 +126,13 @@ ul {
     gap: 30px 0;
 }
 
+.welcome{
+    background-image: url("../img/Welcome.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
 
 .about {
     padding: 20px 0;
@@ -139,10 +147,11 @@ ul {
     padding-bottom: 20px;
     font-size: 40px;
     font-weight: 400;
+    line-height: 40px;
 }
 
 .about__about-line {
-    margin: 0 auto;
+    margin: 0 auto 15px;
     width: 50px;
     height: 1px;
     background-color: #0C0C0E;
@@ -153,6 +162,7 @@ ul {
     text-align: center;
     font-size: 20px;
     margin-bottom: 20px;
+    font-weight: normal;
 }
 
 .about__slider-inner {
@@ -162,6 +172,7 @@ ul {
 .about__slider-box {
     display: flex;
     justify-content: space-between;
+    margin: 0 20px;
 }
 
 .about__slider-dots {
@@ -217,12 +228,18 @@ ul {
     margin-top: 10px;
 }
 
+.footer__top-right {
+    text-align: end;
+}
+
 .footer__bottom {
+    font-family: "Inter", sans-serif;
     display: flex;
     justify-content: space-between;
     padding: 44px 0;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 20px;
 }
 
 .footer__top-icons {
