@@ -175,7 +175,6 @@ ul {
     border-radius: 50%;
     background-color: #000;
     margin: 4px auto;
-    cursor: pointer;
 }
 
 .active {
@@ -186,6 +185,14 @@ ul {
     width: 26px;
     height: 26px;
     border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.slider__dots:hover {
+    .about__slide-dot{
+        background-color: #BB945F;
+    }
 }
 
 .footer {
