@@ -5,6 +5,10 @@ html {
     font-style: normal;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 *,
 *::after,
 *::before {
@@ -144,7 +148,8 @@ ul {
     opacity: 0;
 }
 
-.welcome{ position: relative;
+.welcome {
+    position: relative;
     z-index: -1;
     background-image: url("../img/Welcome.png");
     background-repeat: no-repeat;
@@ -219,6 +224,7 @@ ul {
     transform: translate(10px, 300px);
     left: 25px;
 }
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -239,13 +245,12 @@ ul {
 }
 
 
-
 .about__slider-dots {
     display: flex;
     justify-content: center;
 }
 
-.about__slide-dot{
+.about__slide-dot {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -272,7 +277,7 @@ ul {
 }
 
 .slider__dots:hover {
-    .about__slide-dot{
+    .about__slide-dot {
         background-color: #BB945F;
     }
 }

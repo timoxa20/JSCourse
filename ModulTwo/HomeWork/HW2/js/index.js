@@ -3,8 +3,8 @@ const headerModileeList = document.querySelector('.header__modilee-list');
 const headerBurger = document.querySelector('.header__burger')
 const headerMobileUser = document.querySelector('.header__mobile-user')
 const aboutSlider = document.querySelector('.about__slider')
+let aboutSliderBox = document.querySelectorAll('.about__slider-box')
 const aboutSliderInnder = document.querySelector('.about__slider-inner')
-const aboutSliderBox = document.querySelectorAll('.about__slider-box')
 const arrowLeft = document.querySelector('.about__slider-arrow-left')
 const arrowRight = document.querySelector('.about__slider-arrow')
 const innerDots = document.createElement('div')
@@ -14,6 +14,9 @@ const newAboutSliderBox = document.createElement('div');
 newAboutSliderBox.classList.add('about__slider-box');
 let total = 1
 
+function updateAboutSliderBox() {
+   aboutSliderBox = document.querySelectorAll('.about__slider-box');
+}
 closeButton.addEventListener('click', () => {
     headerModileeList.classList.remove('active-list')
     headerMobileUser.classList.remove('opacity__class')
@@ -40,9 +43,8 @@ function addDots(per) {
     }
 }
 
-addDots(aboutSliderBox)
-
 function showSlide(n) {
+    const aboutSliderBox = document.querySelectorAll('.about__slider-box')
     aboutSliderBox.forEach((item, index) => {
         if (index === n - 1) {
             item.classList.add('active-box');
@@ -52,11 +54,16 @@ function showSlide(n) {
     });
 }
 
+addDots(aboutSliderBox)
+
+
+
 if (window.innerWidth < 1400) {
-    let imagesRemaining = aboutSliderBox.length;
+    const resultBox = document.querySelectorAll('.about__slider-box');
+    let imagesRemaining = resultBox.length;
     let currentBox = null;
 
-    aboutSliderBox.forEach((item, index) => {
+    resultBox.forEach((item, index) => {
         if (index % 2 === 0) {
             currentBox = document.createElement('div');
             currentBox.classList.add('about__slider-box');
@@ -78,48 +85,30 @@ if (window.innerWidth < 1400) {
         singleImageBox.append(remainingImage);
         aboutSliderInnder.append(singleImageBox);
     }
-
-    aboutSliderBox.forEach((item, index) => {
-        if (index % 2 === 0) {
-            item.classList.add('active-box');
-        } else {
-            item.classList.remove('active-box');
-        }
-    });
-
-    const resultBox = document.querySelectorAll('.about__slider-box');
-    addDots(resultBox);
+    showSlide(resultBox)
+    addDots(document.querySelectorAll('.about__slider-box'));
 }
+
+
 if (window.innerWidth < 960) {
-    let imagesRemaining = aboutSliderBox.length;
+    const resultBox = document.querySelectorAll('.about__slider-box');
+    let imagesRemaining = resultBox.length;
     let currentBox = null;
 
-    aboutSliderBox.forEach((item, index) => {
+    resultBox.forEach((item, index) => {
         currentBox = document.createElement('div');
         currentBox.classList.add('about__slider-box');
         aboutSliderInnder.append(currentBox);
 
-        const result = item.children[1];
-        currentBox.append(result);
-
-        imagesRemaining--;
+        if (item.children.length > 0) {
+            const result = item.children[1];
+            currentBox.append(result);
+            imagesRemaining--;
+        }
     });
 
-    aboutSliderBox.forEach(item => {
-        item.classList.add('active-box');
-    });
-
-    const resultBox = document.querySelectorAll('.about__slider-box');
-    addDots(resultBox);
-} else {
-    aboutSliderBox.forEach((item, index) => {
-        item.classList.remove('active-box');
-    });
-
-    aboutSliderBox[0].classList.add('active-box');
-
-    const resultBox = document.querySelectorAll('.about__slider-box');
-    addDots(resultBox);
+    showSlide(1);
+    addDots( document.querySelectorAll('.about__slider-box'));
 }
 
 const aboutSliderDot = document.querySelectorAll('.about__slide-dot')
@@ -133,6 +122,7 @@ aboutSliderDot.forEach((dot, index) => {
     });
 });
 
+updateAboutSliderBox()
 arrowLeft.addEventListener('click', () => {
     total = (total === 1) ? aboutSliderBox.length : total - 1;
     showSlide(total);
