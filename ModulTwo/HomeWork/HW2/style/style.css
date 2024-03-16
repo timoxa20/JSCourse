@@ -124,6 +124,7 @@ ul {
 }
 
 .header__mobile-list {
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
