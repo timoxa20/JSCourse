@@ -18,13 +18,13 @@ function updateAboutSliderBox() {
    aboutSliderBox = document.querySelectorAll('.about__slider-box');
 }
 closeButton.addEventListener('click', () => {
-    headerModileeList.classList.remove('active-list')
-    headerMobileUser.classList.remove('opacity__class')
+    headerModileeList.classList.remove( 'active-list' )
+    headerMobileUser.classList.remove( 'opacity__class' )
 })
 
 headerBurger.addEventListener('click', () => {
-    headerModileeList.classList.add('active-list')
-    headerMobileUser.classList.add('opacity__class')
+    headerModileeList.classList.add( 'active-list' )
+    headerMobileUser.classList.add( 'opacity__class' )
 })
 
 function addDots(per) {
@@ -54,7 +54,7 @@ function showSlide(n) {
     });
 }
 
-addDots(aboutSliderBox)
+addDots( aboutSliderBox )
 
 
 
@@ -85,30 +85,30 @@ if (window.innerWidth < 1400) {
         singleImageBox.append(remainingImage);
         aboutSliderInnder.append(singleImageBox);
     }
-    showSlide(resultBox)
-    addDots(document.querySelectorAll('.about__slider-box'));
+    showSlide( resultBox )
+    addDots( document.querySelectorAll('.about__slider-box') );
 }
 
 
 if (window.innerWidth < 960) {
     const resultBox = document.querySelectorAll('.about__slider-box');
     let imagesRemaining = resultBox.length;
-    let currentBox = null;
 
     resultBox.forEach((item, index) => {
-        currentBox = document.createElement('div');
-        currentBox.classList.add('about__slider-box');
-        aboutSliderInnder.append(currentBox);
-
         if (item.children.length > 0) {
+            let currentBox = document.createElement('div');
+            currentBox.classList.add('about__slider-box');
             const result = item.children[1];
-            currentBox.append(result);
-            imagesRemaining--;
+            if (result) {
+                currentBox.append(result);
+                aboutSliderInnder.append(currentBox);
+                imagesRemaining--;
+            }
         }
     });
 
-    showSlide(1);
-    addDots( document.querySelectorAll('.about__slider-box'));
+    showSlide( 1 );
+    addDots( document.querySelectorAll('.about__slider-box') );
 }
 
 const aboutSliderDot = document.querySelectorAll('.about__slide-dot')
@@ -125,14 +125,14 @@ aboutSliderDot.forEach((dot, index) => {
 updateAboutSliderBox()
 arrowLeft.addEventListener('click', () => {
     total = (total === 1) ? aboutSliderBox.length : total - 1;
-    showSlide(total);
-    activateDot(total);
+    showSlide( total );
+    activateDot( total );
 });
 
 arrowRight.addEventListener('click', () => {
     total = (total === aboutSliderBox.length) ? 1 : total + 1;
-    showSlide(total);
-    activateDot(total);
+    showSlide( total );
+    activateDot( total );
 });
 
 function activateDot(index) {
@@ -142,7 +142,7 @@ function activateDot(index) {
     aboutSliderDot[index - 1].classList.add('active');
 }
 
-showSlide(total)
+showSlide( total )
 
 
 
