@@ -219,12 +219,26 @@ ul {
     transform: translate(10px, 300px);
     left: 25px;
 }
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 
 .about__slider-box {
     display: none;
     justify-content: space-between;
     margin: 0 20px;
+    animation: slideIn 1s ease-in-out;
 }
+
+
 
 .about__slider-dots {
     display: flex;
@@ -245,6 +259,8 @@ ul {
 
 .active-box {
     display: flex;
+    transition-property: background-image;
+    transition-duration: 3s
 }
 
 .slider__dots {
