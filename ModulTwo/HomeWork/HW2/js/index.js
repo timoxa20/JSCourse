@@ -99,7 +99,7 @@ if (window.innerWidth < 960) {
         currentBox.classList.add('about__slider-box');
         aboutSliderInnder.append(currentBox);
 
-        const result = item.children[2];
+        const result = item.children[1];
         currentBox.append(result);
 
         imagesRemaining--;
