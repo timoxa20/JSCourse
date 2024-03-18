@@ -376,6 +376,10 @@ ul {
     right: -25px;
 }
 
+.book__inner{
+    padding: 20px;
+}
+
 .footer {
     background-color: #0C0C0E;
     color: #fff;
