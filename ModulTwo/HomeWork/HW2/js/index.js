@@ -144,6 +144,9 @@ function activateDot(index) {
 
 showSlide( total )
 
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+
 
 
 
