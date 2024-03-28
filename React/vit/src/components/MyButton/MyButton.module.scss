@@ -1,0 +1,9 @@
+.MyButton {
+  margin: 0;
+  outline: none;
+  background: none;
+}
+
+.active {
+  border: 1px solid var(--bg-color);
+}
