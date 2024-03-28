@@ -7,7 +7,7 @@ import {useAppDispath} from "../../../hooks/redux.ts";
 import {Button} from "../../../components/MyButton/MyButton.tsx";
 import {useInput} from "../../../hooks/useInput/useInput.tsx";
 import {MySwitcherLang} from "../../../components/MySwitherLang/MySwitcherLang.tsx";
-import { useState} from "react";
+import {useState} from "react";
 
 interface LoginPageProps {
     className?: string;
@@ -17,6 +17,8 @@ const LoginPage = ({className}: LoginPageProps) => {
     const {t} = useTranslation()
     const {authToggle} = authSlice.actions
     const dispath = useAppDispath()
+    const [image, setImage] = useState(null);
+
     const handleButtonClick = () => {
         dispath(authToggle());
     };
@@ -40,7 +42,16 @@ const LoginPage = ({className}: LoginPageProps) => {
                 isPassword: true
             }
         })
-    const [image, setImage] = useState(null);
+    const passwordRepeat = useInput(
+        {
+            initialValue: '',
+            validations: {
+                isEmpty: true,
+                minLength: 5,
+                maxLength: 13,
+                isPassword: true
+            }
+        })
 
     // @ts-ignore
     const handleImageChange = (event) => {
@@ -51,19 +62,22 @@ const LoginPage = ({className}: LoginPageProps) => {
 
     return (
         <form className={classNames(cls.LoginPage, {}, [className])}>
-                {image
-                    ?
-                    <div className={cls.InputContainerNone}>
-                    <img className={cls.InputContainerImg} src={URL.createObjectURL(image)} alt="Uploaded"/>
-                    </div>
-                    : <div className={cls.InputContainer}>
+            {image
+                ?
+                <div className={cls.InputContainerNone}>
+                    <img
+                        className={cls.InputContainerImg}
+                        src={URL.createObjectURL(image)}
+                        alt="Uploaded"/>
+                </div>
+                :
+                <div className={cls.InputContainer}>
                     <input
-                    className={cls.InputFile}
-                    type="file"
-                    onChange={handleImageChange}
-                />
-                    </div>
-                }
+                        className={cls.InputFile}
+                        type="file"
+                        onChange={handleImageChange}/>
+                </div>
+            }
             {(email.isDirty && email.isEmpty) && <div style={{color: 'red'}}>Пустая </div>}
             {(email.isDirty && email.minLengthError) && <div style={{color: 'red'}}>мало </div>}
             {(email.isDirty && email.maxLengthError) && <div style={{color: 'red'}}>много </div>}
@@ -88,9 +102,36 @@ const LoginPage = ({className}: LoginPageProps) => {
                 type={'password'}
                 placeholder={t('Введите пароль')}
             />
+
+            {password.value !== passwordRepeat.value && (
+                <div style={{ color: 'red' }}>
+                    Неправильно
+                </div>
+            )}
+            <MyInput
+                className={cls.Input}
+                onChange={e => passwordRepeat.onChange(e)}
+                onBlur={e => passwordRepeat.onBlur(e)}
+                value={passwordRepeat.value}
+                type={'password'}
+                placeholder={t('Повторите пароль')}
+            />
             <div className={cls.Inner}>
                 <MySwitcherLang/>
-                <Button className={cls.Button} onClick={handleButtonClick}>{t('Войти')}</Button>
+                {image && email && password && passwordRepeat?
+                    <Button
+                        disabled={false}
+                        className={cls.Button}
+                        onClick={handleButtonClick}
+                    >{t('Войти')}</Button>
+                    :
+                    <Button
+                        disabled={true}
+                        className={cls.Button}
+                        onClick={handleButtonClick}
+                    >{t('Войти')}</Button>
+                }
+
             </div>
         </form>
     );

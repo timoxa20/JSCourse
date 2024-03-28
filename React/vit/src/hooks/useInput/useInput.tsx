@@ -44,7 +44,6 @@ export const useInput = ({initialValue, validations}: useInputProps): useInputRe
         maxLengthError,
         emailError,
         passwordError,
-
     };
 };
 
