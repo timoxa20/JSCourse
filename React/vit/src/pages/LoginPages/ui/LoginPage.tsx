@@ -19,6 +19,7 @@ const LoginPage = ({className}: LoginPageProps) => {
     const dispath = useAppDispath()
     const [image, setImage] = useState(null);
 
+
     const handleButtonClick = () => {
         dispath(authToggle());
     };
@@ -78,10 +79,16 @@ const LoginPage = ({className}: LoginPageProps) => {
                         onChange={handleImageChange}/>
                 </div>
             }
-            {(email.isDirty && email.isEmpty) && <div style={{color: 'red'}}>Пустая </div>}
-            {(email.isDirty && email.minLengthError) && <div style={{color: 'red'}}>мало </div>}
-            {(email.isDirty && email.maxLengthError) && <div style={{color: 'red'}}>много </div>}
-            {(email.isDirty && email.emailError) && <div style={{color: 'red'}}>reg </div>}
+            { email.isDirty && (
+                <>
+                    {[
+                        { error: email.isEmpty },
+                        { error: email.minLengthError },
+                        { error: email.maxLengthError },
+                        { error: email.emailError },
+                    ].map(({ error }) =>  <div style={{ color: 'red' }}>{error}</div>)}
+                </>
+            )}
             <MyInput
                 className={cls.Input}
                 onChange={e => email.onChange(e)}
@@ -90,10 +97,16 @@ const LoginPage = ({className}: LoginPageProps) => {
                 type={'text'}
                 placeholder={t('Введите email')}
             />
-            {(password.isDirty && password.isEmpty) && <div style={{color: 'red'}}>Пустая </div>}
-            {(password.isDirty && password.minLengthError) && <div style={{color: 'red'}}>мало </div>}
-            {(password.isDirty && password.maxLengthError) && <div style={{color: 'red'}}>много </div>}
-            {(password.isDirty && password.passwordError) && <div style={{color: 'red'}}>reg </div>}
+            { password.isDirty && (
+                <>
+                    {[
+                        { error: password.isEmpty },
+                        { error: password.minLengthError },
+                        { error: password.maxLengthError },
+                        { error: password.passwordError },
+                    ].map(({ error }) =>  <div style={{ color: 'red' }}>{error}</div>)}
+                </>
+            )}
             <MyInput
                 className={cls.Input}
                 onChange={e => password.onChange(e)}
@@ -118,20 +131,11 @@ const LoginPage = ({className}: LoginPageProps) => {
             />
             <div className={cls.Inner}>
                 <MySwitcherLang/>
-                {image && email && password && passwordRepeat?
                     <Button
-                        disabled={false}
+                        disabled={!email.inputValid || !password.inputValid || !passwordRepeat.inputValid}
                         className={cls.Button}
                         onClick={handleButtonClick}
                     >{t('Войти')}</Button>
-                    :
-                    <Button
-                        disabled={true}
-                        className={cls.Button}
-                        onClick={handleButtonClick}
-                    >{t('Войти')}</Button>
-                }
-
             </div>
         </form>
     );
