@@ -5,7 +5,6 @@ interface useInputResult extends UseValidationResult{
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
-    isEmpty: string | null,
     isDirty: boolean,
 }
 
@@ -18,10 +17,8 @@ export const useInput = ({initialValue, validations}: useInputProps): useInputRe
     const [value, setValue] = useState(initialValue);
     const [isDirty, setIsDirty] = useState(false)
     const {
-        isEmpty,
         minLengthError,
         maxLengthError,
-        emailError,
         passwordError
     } = UseValidation({ value, validation: validations });
 
@@ -40,10 +37,8 @@ export const useInput = ({initialValue, validations}: useInputProps): useInputRe
         onChange,
         onBlur,
         isDirty,
-        isEmpty,
         minLengthError,
         maxLengthError,
-        emailError,
         passwordError,
     };
 };

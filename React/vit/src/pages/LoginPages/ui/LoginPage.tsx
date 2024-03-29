@@ -27,7 +27,6 @@ const LoginPage = ({className}: LoginPageProps) => {
         {
             initialValue: '',
             validations: {
-                isEmpty: true,
                 minLength: 4,
                 isEmail: true,
                 maxLength: 13,
@@ -37,7 +36,6 @@ const LoginPage = ({className}: LoginPageProps) => {
         {
             initialValue: '',
             validations: {
-                isEmpty: true,
                 minLength: 5,
                 maxLength: 13,
                 isPassword: true
@@ -47,7 +45,6 @@ const LoginPage = ({className}: LoginPageProps) => {
         {
             initialValue: '',
             validations: {
-                isEmpty: true,
                 minLength: 5,
                 maxLength: 13,
                 isPassword: true,
@@ -82,10 +79,8 @@ const LoginPage = ({className}: LoginPageProps) => {
             { email.isDirty && (
                 <>
                     {[
-                        { error: email.isEmpty },
                         { error: email.minLengthError },
                         { error: email.maxLengthError },
-                        { error: email.emailError },
                     ].map(({ error }) =>  <div key={error} style={{ color: 'red' }}>{error}</div>)}
                 </>
             )}
@@ -95,12 +90,11 @@ const LoginPage = ({className}: LoginPageProps) => {
                 onBlur={e => email.onBlur(e)}
                 value={email.value}
                 type={'text'}
-                placeholder={t('Введите email')}
+                placeholder={t('Логин')}
             />
             { password.isDirty && (
                 <>
                     {[
-                        { error: password.isEmpty },
                         { error: password.minLengthError },
                         { error: password.maxLengthError },
                         { error: password.passwordError },
