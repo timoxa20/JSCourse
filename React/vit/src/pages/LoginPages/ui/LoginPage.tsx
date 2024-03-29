@@ -50,7 +50,7 @@ const LoginPage = ({className}: LoginPageProps) => {
                 isEmpty: true,
                 minLength: 5,
                 maxLength: 13,
-                isPassword: true
+                isPassword: true,
             }
         })
 
@@ -86,7 +86,7 @@ const LoginPage = ({className}: LoginPageProps) => {
                         { error: email.minLengthError },
                         { error: email.maxLengthError },
                         { error: email.emailError },
-                    ].map(({ error }) =>  <div style={{ color: 'red' }}>{error}</div>)}
+                    ].map(({ error }) =>  <div key={error} style={{ color: 'red' }}>{error}</div>)}
                 </>
             )}
             <MyInput
@@ -104,7 +104,7 @@ const LoginPage = ({className}: LoginPageProps) => {
                         { error: password.minLengthError },
                         { error: password.maxLengthError },
                         { error: password.passwordError },
-                    ].map(({ error }) =>  <div style={{ color: 'red' }}>{error}</div>)}
+                    ].map(({ error }) =>  <div key={error} style={{ color: 'red' }}>{error}</div>)}
                 </>
             )}
             <MyInput

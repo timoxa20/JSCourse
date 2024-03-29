@@ -22,7 +22,8 @@ export const useInput = ({initialValue, validations}: useInputProps): useInputRe
         minLengthError,
         maxLengthError,
         emailError,
-        passwordError } = UseValidation({ value, validation: validations });
+        passwordError
+    } = UseValidation({ value, validation: validations });
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
