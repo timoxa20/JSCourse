@@ -5,7 +5,7 @@ interface useInputResult extends UseValidationResult{
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
-    isEmpty: boolean,
+    isEmpty: string | null,
     isDirty: boolean,
 }
 
