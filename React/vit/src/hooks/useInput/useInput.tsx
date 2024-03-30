@@ -6,14 +6,16 @@ interface useInputResult extends UseValidationResult{
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
     isDirty: boolean,
+    saveToLocalStorage?: (() => void) | undefined
 }
 
 interface useInputProps extends InputHTMLAttributes<HTMLInputElement> {
     initialValue: string;
     validations: IValidation
+    saveToLocalStorage?: string
 }
 
-export const useInput = ({initialValue, validations}: useInputProps): useInputResult => {
+export const useInput = ({initialValue, validations,}: useInputProps): useInputResult => {
     const [value, setValue] = useState(initialValue);
     const [isDirty, setIsDirty] = useState(false)
     const {
@@ -30,6 +32,8 @@ export const useInput = ({initialValue, validations}: useInputProps): useInputRe
     const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsDirty(!isDirty)
     }
+
+
 
 
     return {

@@ -7,7 +7,8 @@ import {useAppDispath} from "../../../hooks/redux.ts";
 import {Button} from "../../../components/MyButton/MyButton.tsx";
 import {useInput} from "../../../hooks/useInput/useInput.tsx";
 import {MySwitcherLang} from "../../../components/MySwitherLang/MySwitcherLang.tsx";
-import {useState} from "react";
+import {useAvatar} from "../../../hooks/useAvatar/useAvatar.tsx";
+import {useEffect} from "react";
 
 interface LoginPageProps {
     className?: string;
@@ -17,21 +18,22 @@ const LoginPage = ({className}: LoginPageProps) => {
     const {t} = useTranslation()
     const {authToggle} = authSlice.actions
     const dispath = useAppDispath()
-    const [image, setImage] = useState(null);
+    const {image, handleImageChange} = useAvatar({initialValue: null})
 
 
     const handleButtonClick = () => {
         dispath(authToggle());
     };
-    const email = useInput(
+
+    const login = useInput(
         {
             initialValue: '',
             validations: {
                 minLength: 4,
                 isEmail: true,
                 maxLength: 13,
-            }
-        });
+            },
+            });
     const password = useInput(
         {
             initialValue: '',
@@ -50,13 +52,13 @@ const LoginPage = ({className}: LoginPageProps) => {
                 isPassword: true,
             }
         })
+    const saveToLocalStorage = () => {
+        localStorage.setItem("inputValue", login.value)
+    }
 
-    // @ts-ignore
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        setImage(file);
-    };
-
+    useEffect(() => {
+        saveToLocalStorage();
+    }, [login.value]);
 
     return (
         <form className={classNames(cls.LoginPage, {}, [className])}>
@@ -76,29 +78,29 @@ const LoginPage = ({className}: LoginPageProps) => {
                         onChange={handleImageChange}/>
                 </div>
             }
-            { email.isDirty && (
+            { login.isDirty && (
                 <>
                     {[
-                        { error: email.minLengthError },
-                        { error: email.maxLengthError },
-                    ].map(({ error }) =>  <div key={error} style={{ color: 'red' }}>{error}</div>)}
+                        {id: 'sdgsdfsd', error: login.minLengthError },
+                        {id: 'fsdsfsfs', error: login.maxLengthError },
+                    ].map(({id, error }) =>  <div key={id} style={{ color: 'red' }}>{error}</div>)}
                 </>
             )}
             <MyInput
                 className={cls.Input}
-                onChange={e => email.onChange(e)}
-                onBlur={e => email.onBlur(e)}
-                value={email.value}
+                onChange={e => login.onChange(e)}
+                onBlur={e => login.onBlur(e)}
+                value={login.value}
                 type={'text'}
                 placeholder={t('Логин')}
             />
             { password.isDirty && (
                 <>
                     {[
-                        { error: password.minLengthError },
-                        { error: password.maxLengthError },
-                        { error: password.passwordError },
-                    ].map(({ error }) =>  <div key={error} style={{ color: 'red' }}>{error}</div>)}
+                        { id: 'string', error: password.minLengthError },
+                        { id: 'number', error: password.maxLengthError },
+                        { id: 'number', error: password.passwordError },
+                    ].map(({ id, error }, ) =>  <div key={id} style={{ color: 'red' }}>{error}</div>)}
                 </>
             )}
             <MyInput
@@ -126,7 +128,6 @@ const LoginPage = ({className}: LoginPageProps) => {
             <div className={cls.Inner}>
                 <MySwitcherLang/>
                     <Button
-                        disabled={!email.inputValid || !password.inputValid || !passwordRepeat.inputValid}
                         className={cls.Button}
                         onClick={handleButtonClick}
                     >{t('Войти')}</Button>
