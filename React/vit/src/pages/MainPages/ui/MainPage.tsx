@@ -1,9 +1,9 @@
+import {Navbar} from "../../../components/Navbar/Navbar.tsx";
 
 const MainPage = () => {
-    const weater = 'Погода'
     return (
         <div>
-            {weater}
+            <Navbar/>
         </div>
     );
 };
