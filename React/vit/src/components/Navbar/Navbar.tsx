@@ -10,7 +10,7 @@ interface NavbarProps {
 }
 
 export const Navbar = ({className}: NavbarProps) => {
-    const [menuActiv, setMenuActiv] = useState(false)
+    const [menuActiv, setMenuActiv] = useState(true)
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <Button
@@ -19,7 +19,7 @@ export const Navbar = ({className}: NavbarProps) => {
             >
                 <span/>
             </Button>
-            <MyInput type={'search'}/>
+            <MyInput className={cls.Input} type={'search'}/>
             <Menu active={menuActiv} setActive={setMenuActiv}/>
         </div>
     );
