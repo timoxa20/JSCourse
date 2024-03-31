@@ -5,13 +5,11 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: var(--inverted-bg-color);
-  padding: 0 20px;
-  position: fixed;
   z-index: 50;
 }
 
 .ButtonBtn {
-  width: 30px;
+  width: 60px;
   height: 30px;
   position: relative;
   outline: none;
@@ -45,3 +43,9 @@
   background-color: var(--inverted-bg-color);
   height: 2px;
 }
+
+.Input {
+  position: absolute;
+  right: 20px;
+}
+

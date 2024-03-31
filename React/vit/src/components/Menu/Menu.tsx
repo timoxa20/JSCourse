@@ -3,6 +3,9 @@ import cls from './Menu.module.scss'
 import {MySwitherTheme} from "../MySwitcherTheme/MySwitherTheme.tsx";
 import {MySwitcherLang} from "../MySwitherLang/MySwitcherLang.tsx";
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {authSlice} from "../../store/reducer/AuthSlice.ts";
+import {useAppDispath} from "../../hooks/redux.ts";
+import {Button} from "../MyButton/MyButton.tsx";
 
 interface MenuProps {
     className?: string;
@@ -12,7 +15,12 @@ interface MenuProps {
 
 export const Menu = ({className, active}: MenuProps) => {
     const [login, setLogin] = useState<string | null>(null);
-
+    const {authToggle} = authSlice.actions
+    const dispath = useAppDispath()
+    const handleButtonClick = () => {
+        dispath(authToggle());
+        localStorage.clear()
+    };
     useEffect(() => {
         const fetchLogin = () => {
             const loginValue = localStorage.getItem('inputValue');
@@ -40,6 +48,7 @@ export const Menu = ({className, active}: MenuProps) => {
                 </div>
                 <MySwitherTheme/>
                 <MySwitcherLang/>
+                <Button className={cls.Button} onClick={handleButtonClick}>Выйти</Button>
             </div>
         </div>
     );
