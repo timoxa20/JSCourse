@@ -22,7 +22,7 @@
   width: 30%;
   height: 100vh;
   background-color: var(--inverted-bg-color);
-  transform: translateX(-100%);
+  transform: translateX(-101%);
   transition: all 0.5s;
   margin-top: 30px;
   position: absolute;
@@ -44,4 +44,17 @@
   background-color: blue;
   color: #fff;
   padding: 10px;
+}
+
+@media screen and (max-width: 855px){
+  .MenuContentActive {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .MenuImg img {
+    width: 50px;
+    height: 50px;
+  }
 }
