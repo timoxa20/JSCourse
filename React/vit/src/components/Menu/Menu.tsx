@@ -27,8 +27,6 @@ export const Menu = ({className, active}: MenuProps) => {
             setLogin(loginValue);
         };
 
-
-
         fetchLogin();
     }, []);
 

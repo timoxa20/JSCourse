@@ -8,7 +8,7 @@ import {Button} from "../../../components/MyButton/MyButton.tsx";
 import {useInput} from "../../../hooks/useInput/useInput.tsx";
 import {MySwitcherLang} from "../../../components/MySwitherLang/MySwitcherLang.tsx";
 import {useAvatar} from "../../../hooks/useAvatar/useAvatar.tsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 interface LoginPageProps {
     className?: string;
@@ -19,10 +19,14 @@ const LoginPage = ({className}: LoginPageProps) => {
     const {authToggle} = authSlice.actions
     const dispath = useAppDispath()
     const {image, handleImageChange} = useAvatar({initialValue: null})
+    const [errorRepeatPassword, setErrorRepeatPassword] = useState('Неправильно')
+
+    const [isFormValid, setIsFormValid] = useState(false);
 
 
     const handleButtonClick = () => {
         dispath(authToggle());
+        localStorage.setItem('isLoggedIn', 'true');
     };
 
     const login = useInput(
@@ -33,7 +37,7 @@ const LoginPage = ({className}: LoginPageProps) => {
                 isEmail: true,
                 maxLength: 13,
             },
-            });
+        });
     const password = useInput(
         {
             initialValue: '',
@@ -60,6 +64,18 @@ const LoginPage = ({className}: LoginPageProps) => {
         saveToLocalStorage();
     }, [login.value]);
 
+    useEffect(() => {
+        if (password.value !== passwordRepeat.value && passwordRepeat.value.length > 0) {
+            setErrorRepeatPassword('Неправильно');
+        } else {
+            setErrorRepeatPassword('');
+        }
+    }, [password.value, passwordRepeat.value]);
+
+    useEffect(() => {
+        setIsFormValid(login.value !== '' && password.value !== '' && passwordRepeat.value !== '' && image !== null);
+    }, [login.value, password.value, passwordRepeat.value, image]);
+
     return (
         <form className={classNames(cls.LoginPage, {}, [className])}>
             {image
@@ -78,12 +94,12 @@ const LoginPage = ({className}: LoginPageProps) => {
                         onChange={handleImageChange}/>
                 </div>
             }
-            { login.isDirty && (
+            {login.isDirty && (
                 <>
                     {[
-                        {id: 'sdgsdfsd', error: login.minLengthError },
-                        {id: 'fsdsfsfs', error: login.maxLengthError },
-                    ].map(({id, error }) =>  <div key={id} style={{ color: 'red' }}>{error}</div>)}
+                        {id: 'sdgsdfsd', error: login.minLengthError},
+                        {id: 'fsdsfsfs', error: login.maxLengthError},
+                    ].map(({id, error}) => <div key={id} style={{color: 'red'}}>{error}</div>)}
                 </>
             )}
             <MyInput
@@ -94,13 +110,13 @@ const LoginPage = ({className}: LoginPageProps) => {
                 type={'text'}
                 placeholder={t('Логин')}
             />
-            { password.isDirty && (
+            {password.isDirty && (
                 <>
                     {[
-                        { id: 'string', error: password.minLengthError },
-                        { id: 'number', error: password.maxLengthError },
-                        { id: 'number', error: password.passwordError },
-                    ].map(({ id, error }, ) =>  <div key={id} style={{ color: 'red' }}>{error}</div>)}
+                        {id: 'string', error: password.minLengthError},
+                        {id: 'number', error: password.maxLengthError},
+                        {id: 'number', error: password.passwordError},
+                    ].map(({id, error},) => <div key={id} style={{color: 'red'}}>{error}</div>)}
                 </>
             )}
             <MyInput
@@ -111,12 +127,7 @@ const LoginPage = ({className}: LoginPageProps) => {
                 type={'password'}
                 placeholder={t('Введите пароль')}
             />
-
-            {password.value !== passwordRepeat.value && (
-                <div style={{ color: 'red' }}>
-                    Неправильно
-                </div>
-            )}
+            {errorRepeatPassword && <div style={{ color: 'red' }}>{errorRepeatPassword}</div>}
             <MyInput
                 className={cls.Input}
                 onChange={e => passwordRepeat.onChange(e)}
@@ -127,10 +138,11 @@ const LoginPage = ({className}: LoginPageProps) => {
             />
             <div className={cls.Inner}>
                 <MySwitcherLang/>
-                    <Button
-                        className={cls.Button}
-                        onClick={handleButtonClick}
-                    >{t('Войти')}</Button>
+                <Button
+                    disabled={!isFormValid}
+                    className={cls.Button}
+                    onClick={handleButtonClick}
+                >{t('Войти')}</Button>
             </div>
         </form>
     );

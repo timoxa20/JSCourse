@@ -4,7 +4,7 @@ import {useAppSelector} from "../../hooks/redux.ts";
 
 
 const AppRoute = () => {
-    const {auth} = useAppSelector(state => state.authReducer)
+    const auth = useAppSelector(state => state.authReducer.auth)
     return (
         <Routes>
             {auth
