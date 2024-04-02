@@ -1,6 +1,11 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import cls from './BoxWeather.module.scss'
+import {useAppSelector} from "../../hooks/redux.ts";
+import {useTranslation} from "react-i18next";
+import useDebounce from "../../hooks/useDebounce/useDebounce.tsx";
+import {Loader} from "../Loader/Loader.tsx";
+
 
 interface ICoord {
     lat: number;
@@ -59,53 +64,71 @@ interface AirPollution {
 export const BoxWeather = () => {
     const [data, setData] = useState<DataProps | null>(null)
     const [data2, setData2] = useState<AirPollution | null>(null);
-    const [weatherForFiveDays, setweatherForFiveDays] = useState<DataProps | null>(null);
+    // const [weatherForFiveDays, setweatherForFiveDays] = useState<DataProps | null>(null);
+    const path = 'http://api.openweathermap.org/data/2.5'
+    const {t} = useTranslation()
+    const [isLoading, setIsLoading] = useState(false);
+    const city = useAppSelector(state => state.authReducer.city)
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`${path}/forecast?q=${city}&lat=55.7522&lon=37.6156&cnt=1&lang=${t('ru')}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
+            setData(response.data);
+
+            // const weatherFiveDays = await axios.get(`${path}/forecast/daily?${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&cnt=2&lang=ru&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
+            // setweatherForFiveDays(weatherFiveDays.data);
+
+
+            const airPollution = await axios.get(`${path}/air_pollution?lat=${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
+            setData2(airPollution.data);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+        }
+    };
+
+
+    const debounceWeather = useDebounce(fetchData, 3000)
 
     useEffect(() => {
+        setIsLoading(true); // Показываем лоадер перед выполнением запроса
+        // @ts-ignore
+        debounceWeather();
+    }, [city, t, data, data2]);
 
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://api.openweathermap.org/data/2.5/forecast?q=Moscow&lat=55.7522&lon=37.6156&cnt=1&lang=ru&appid=7e56ecfdfba4576dad0f22b5d28528d7');
-                setData(response.data);
-
-                const weatherFiveDays = await axios.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=Moscow&cnt=2&lang=ru&appid=7e56ecfdfba4576dad0f22b5d28528d7');
-                setweatherForFiveDays(weatherFiveDays.data);
-
-
-                const airPollution = await axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
-                setData2(airPollution.data);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
-    console.log(data)
+    useEffect(() => {
+        // После завершения запроса скрываем лоадер
+        setIsLoading(false);
+    }, [data, data2]);
     return (
         <div className={cls.BoxWeather}>
-            <div className={cls.BoxWeatherItem}>
-                    <span>
-                        <div className={cls.InnerFive}>
-                           {weatherForFiveDays?.list.map((elem, index) => (
-                               <div key={index}>
-                                   {elem.weather.map((e) => (
-                                       <div key={e.id}>
-                                           <img src={`http://openweathermap.org/img/wn/${e.icon}.png`}
-                                                alt="Weather Icon"/>
-                                           <p>{e.description}</p>
-                                           <p>{e.main}</p>
-                                       </div>
-                                   ))}
-                                   <p>{elem.dt_txt}</p>
-                                   <p>{elem.main.temp_kf}</p>
-                               </div>
-                           ))}
-                        </div>
-                    </span>
-            </div>
-            <div className={cls.BoxWeatherItem}>
+            {isLoading ? (
+                <Loader/>
+            ) : (
+                <>
+
+                    {/*<div className={cls.BoxWeatherItem}>*/}
+                    {/*        <span>*/}
+                    {/*            <div className={cls.InnerFive}>*/}
+                    {/*               {weatherForFiveDays?.list.map((elem, index) => (*/}
+                    {/*                   <div key={index}>*/}
+                    {/*                       {elem.weather.map((e) => (*/}
+                    {/*                           <div key={e.id}>*/}
+                    {/*                               <img src={`http://openweathermap.org/img/wn/${e.icon}.png`}*/}
+                    {/*                                    alt="Weather Icon"/>*/}
+                    {/*                               <p>{e.description}</p>*/}
+                    {/*                               <p>{e.main}</p>*/}
+                    {/*                           </div>*/}
+                    {/*                       ))}*/}
+                    {/*                       <p>{elem.dt_txt}</p>*/}
+                    {/*                       <p>{elem.main.temp_kf}</p>*/}
+                    {/*                   </div>*/}
+                    {/*               ))}*/}
+                    {/*            </div>*/}
+                    {/*        </span>*/}
+                    {/*</div>*/}
+                    <div className={cls.BoxWeatherItem}>
                 <span>
                     <div className={cls.Inner}>
                         <p className={cls.City}> {data?.city.name}</p>
@@ -124,8 +147,8 @@ export const BoxWeather = () => {
                     </div>
                     </div>
                     </span>
-            </div>
-            <div className={cls.BoxWeatherItem}>
+                    </div>
+                    <div className={cls.BoxWeatherItem}>
                     <span>
                         <div className={cls.Inner}>
                            {data?.list.map((elem, index) => (
@@ -144,11 +167,11 @@ export const BoxWeather = () => {
                            ))}
                         </div>
                     </span>
-            </div>
-
-        </div>
-    );
-};
+                    </div>
+                </>
+            )}
+        </div>)
+}
 
 
 

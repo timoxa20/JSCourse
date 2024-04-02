@@ -33,9 +33,6 @@ export const useInput = ({initialValue, validations,}: useInputProps): useInputR
         setIsDirty(!isDirty)
     }
 
-
-
-
     return {
         value,
         onChange,
