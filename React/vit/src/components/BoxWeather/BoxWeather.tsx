@@ -64,7 +64,7 @@ interface AirPollution {
 export const BoxWeather = () => {
     const [data, setData] = useState<DataProps | null>(null)
     const [data2, setData2] = useState<AirPollution | null>(null);
-    // const [weatherForFiveDays, setweatherForFiveDays] = useState<DataProps | null>(null);
+    const [weatherForFiveDays, setweatherForFiveDays] = useState<DataProps | null>(null);
     const path = 'http://api.openweathermap.org/data/2.5'
     const {t} = useTranslation()
     const [isLoading, setIsLoading] = useState(false);
@@ -75,8 +75,8 @@ export const BoxWeather = () => {
             const response = await axios.get(`${path}/forecast?q=${city}&lat=55.7522&lon=37.6156&cnt=1&lang=${t('ru')}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
             setData(response.data);
 
-            // const weatherFiveDays = await axios.get(`${path}/forecast/daily?${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&cnt=2&lang=ru&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
-            // setweatherForFiveDays(weatherFiveDays.data);
+            const weatherFiveDays = await axios.get(`${path}/forecast?lat=${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&lang=${t('ru')}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
+            setweatherForFiveDays(weatherFiveDays.data);
 
 
             const airPollution = await axios.get(`${path}/air_pollution?lat=${response.data.city.coord.lat}&lon=${response.data.city.coord.lon}&appid=7e56ecfdfba4576dad0f22b5d28528d7`);
@@ -88,17 +88,15 @@ export const BoxWeather = () => {
         }
     };
 
-
     const debounceWeather = useDebounce(fetchData, 3000)
 
     useEffect(() => {
-        setIsLoading(true); // Показываем лоадер перед выполнением запроса
+        setIsLoading(true);
         // @ts-ignore
         debounceWeather();
     }, [city, t, data, data2]);
 
     useEffect(() => {
-        // После завершения запроса скрываем лоадер
         setIsLoading(false);
     }, [data, data2]);
     return (
@@ -107,27 +105,29 @@ export const BoxWeather = () => {
                 <Loader/>
             ) : (
                 <>
-
-                    {/*<div className={cls.BoxWeatherItem}>*/}
-                    {/*        <span>*/}
-                    {/*            <div className={cls.InnerFive}>*/}
-                    {/*               {weatherForFiveDays?.list.map((elem, index) => (*/}
-                    {/*                   <div key={index}>*/}
-                    {/*                       {elem.weather.map((e) => (*/}
-                    {/*                           <div key={e.id}>*/}
-                    {/*                               <img src={`http://openweathermap.org/img/wn/${e.icon}.png`}*/}
-                    {/*                                    alt="Weather Icon"/>*/}
-                    {/*                               <p>{e.description}</p>*/}
-                    {/*                               <p>{e.main}</p>*/}
-                    {/*                           </div>*/}
-                    {/*                       ))}*/}
-                    {/*                       <p>{elem.dt_txt}</p>*/}
-                    {/*                       <p>{elem.main.temp_kf}</p>*/}
-                    {/*                   </div>*/}
-                    {/*               ))}*/}
-                    {/*            </div>*/}
-                    {/*        </span>*/}
-                    {/*</div>*/}
+                    <div className={cls.BoxWeatherItem}>
+                            <span>
+                                <div className={cls.InnerFive}>
+                                   {weatherForFiveDays?.list
+                                       .filter((_, index) => [1, 8, 16, 24, 32]
+                                           .includes(index))
+                                       .map((elem, index) => (
+                                           <div key={index}>
+                                               {elem.weather.map((e) => (
+                                                   <div key={e.id}>
+                                                       <img src={`http://openweathermap.org/img/wn/${e.icon}.png`}
+                                                            alt="Weather Icon"/>
+                                                       <p>{e.description}</p>
+                                                       <p>{e.main}</p>
+                                                   </div>
+                                               ))}
+                                               <p>{elem.dt_txt}</p>
+                                               <p>{elem.main.temp_kf}</p>
+                                           </div>
+                                       ))}
+                                </div>
+                            </span>
+                    </div>
                     <div className={cls.BoxWeatherItem}>
                 <span>
                     <div className={cls.Inner}>
