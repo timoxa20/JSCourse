@@ -1,9 +1,4 @@
-.BoxWeather {
-  margin-top: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+
 
 .City {
   font-size: 25px;
@@ -54,6 +49,7 @@
   display: flex;
   text-align: center;
   margin-top: 25px;
+  justify-content: center;
 }
 
 @property --a {
@@ -71,6 +67,22 @@
   }
 }
 
+@media screen and (max-width: 1315px) {
+  .BoxWeather {
+    flex-direction: column;
+    align-items: center;
+  }
+  .BoxWeatherItem {
+    width: 100%;
+    justify-content: center;
+  }
+  .BoxWeatherItem span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 670px) {
   .BoxWeather {
     flex-direction: column;
@@ -78,5 +90,17 @@
   }
   .BoxWeatherItem {
   width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .InnerFive {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .InnerFive {
+    font-size: 8px;
   }
 }

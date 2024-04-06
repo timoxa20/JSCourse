@@ -1,32 +1,23 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import {privatRoute, publicRoute} from "../index.tsx";
+import {privateRoute, publicRoute} from "../index.tsx";
 import {useAppSelector} from "../../hooks/redux.ts";
 
 
 const AppRoute = () => {
-    const auth = useAppSelector(state => state.authReducer.auth)
+    const auth = useAppSelector(state => state.auth.auth)
     return (
         <Routes>
-            {auth
-                ? privatRoute.map(route => (
-                    <Route
-                        key={route.path}
-                        path={route.path}
-                        element={route.element}
-                    />
-                ))
-                : publicRoute.map(route => (
-                    <Route
-                        key={route.path}
-                        path={route.path}
-                        element={route.element}
-                    />
-                ))
-            }
-            {auth
-                ? <Route path="*" element={<Navigate to="/" />} />
-                : <Route path="*" element={<Navigate to="/login" />} />
-            }
+            {(auth ? privateRoute : publicRoute).map(route => (
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                />
+            ))}
+            <Route
+                path="*"
+                element={<Navigate to={auth ? "/" : "/login"} />}
+            />
         </Routes>
     );
 };

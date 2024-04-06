@@ -3,13 +3,13 @@ import cls from './Navbar.module.scss'
 import {Button} from "../MyButton/MyButton.tsx";
 import {MyInput} from "../MyInput/MyInput.tsx";
 import {Menu} from "../Menu/Menu.tsx";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useInput} from "../../hooks/useInput/useInput.tsx";
-import axios from "axios";
 import useDebounce from "../../hooks/useDebounce/useDebounce.tsx";
 import {useDispatch} from "react-redux";
 import {setCity} from "../../store/reducer/AuthSlice.ts";
 import {useAppSelector} from "../../hooks/redux.ts";
+import {fetchCityApi} from "../../api/CityApi/FetchCity.ts";
 
 interface NavbarProps {
     className?: string;
@@ -26,35 +26,30 @@ interface showDropdaunCity {
 
 export const Navbar = ({className}: NavbarProps) => {
 
-    const path = 'https://api.api-ninjas.com/v1/city?limit=4&name='
     const search = useInput({
         initialValue: '',
         validations: {}
     })
+    const debounce = useDebounce(search.value)
     const [menuActiv, setMenuActiv] = useState(true)
     const [showDropdaun, setshowDropdaun] = useState<showDropdaunCity | null>(null)
     const dispatch = useDispatch()
-    const city = useAppSelector(state => state.authReducer.city)
-
-    const searchCity = async (query: string) => {
-        try {
-            const response = await axios({
-                method: 'GET',
-                url: path + query,
-                headers: { 'X-Api-Key': 'qBp16x6JNuuqybKVoQWFdQ==g593kyubtOmB5XnE'},
-            });
-            setshowDropdaun(response);
-        } catch (error) {
-            console.error('Error fetching city:', error);
+    const city = useAppSelector(state => state.city.city)
+    const cityName = useAppSelector(state => state.auth.city)
+console.log(city)
+    useEffect(() => {
+        const params = {
+            name: cityName,
+            limit:4,
         }
-    };
+        dispatch(fetchCityApi(params))
+    }, [search, debounce, cityName]);
 
     // @ts-ignore
-    const debounceSearch = useDebounce(searchCity, 0)
+
 
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         search.onChange(e);
-        debounceSearch(e.target.value);
         dispatch(setCity(e.target.value))
     }
 
@@ -74,7 +69,7 @@ export const Navbar = ({className}: NavbarProps) => {
                 <MyInput
                     className={cls.Input}
                     type={'search'}
-                    value={city}
+                    value={cityName}
                     onChange={onChangeValue}
                 />
                 {showDropdaun?.data && showDropdaun.data.length > 0 && (

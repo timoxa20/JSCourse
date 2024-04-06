@@ -7,23 +7,22 @@ export interface IValidation {
     isPassword?: boolean;
 }
 
- interface UseValidationProps {
+ interface useValidationProps {
     value: string;
     validation: IValidation;
 }
 
-export interface UseValidationResult {
+export interface useValidationResult {
     minLengthError: null | string;
     maxLengthError?:null | string;
     passwordError?: null | string;
     inputValid?: boolean
 }
 
-export const UseValidation = ({ value, validation }: UseValidationProps): UseValidationResult => {
+export const useValidation = ({ value, validation }: useValidationProps): useValidationResult => {
     const [minLengthError, setMinLengthError] = useState<string | null>(null);
     const [maxLengthError, setMaxLengthError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);
-    const [inputValid, setInputValid] = useState(false);
 
     useEffect(() => {
         for (const key in validation) {
@@ -46,18 +45,11 @@ export const UseValidation = ({ value, validation }: UseValidationProps): UseVal
         }
     }, [value]);
 
-    useEffect(() => {
-        if(maxLengthError || minLengthError ||  passwordError) {
-            setInputValid(false)
-        } else {
-            setInputValid(true)
-        }
-    }, [minLengthError, maxLengthError, passwordError]);
+
 
     return {
         minLengthError,
         maxLengthError,
         passwordError,
-        inputValid
     };
 };

@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 import {classNames} from "../../helpers/ClassNames/ClassNames.ts";
-import cls from './MySwitherTheme.module.scss'
+import cls from './MySwitсherTheme.module.scss'
 import {Button} from '../MyButton/MyButton.tsx'
 import {useTheme} from "../../hooks/useTheme/useTheme.tsx";
 import {Theme} from "../ThemeContext/ThemeContext.tsx";
@@ -11,11 +11,11 @@ import IconLight from '../../style/assets/sun.svg?react'
 
 
 
-interface MySwitherProps {
+interface MySwitcherProps {
     className?: string;
 }
 
-export const MySwitherTheme = ({className,}: MySwitherProps) => {
+export const MySwitcherTheme = ({className,}: MySwitcherProps) => {
     const {theme, toggleTheme} = useTheme()
     return (
         <Button

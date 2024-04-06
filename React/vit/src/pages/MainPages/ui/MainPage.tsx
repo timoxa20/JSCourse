@@ -1,6 +1,8 @@
 import {Navbar} from "../../../components/Navbar/Navbar.tsx";
 import cls from './MainPage.module.scss'
-import {BoxWeather} from "../../../components/BoxWeather/BoxWeather.tsx";
+import {WeatherOneDayList} from "../../../components/WeatherOneDayList/WeatherOneDayList.tsx";
+import {AirPollution} from "../../../components/AirPollution/AirPollution.tsx";
+import {WeatherFiveDayList} from "../../../components/WeatherFiveDayList/WeatherFiveDayList.tsx";
 
 
 const MainPage = () => {
@@ -10,8 +12,10 @@ const MainPage = () => {
             <div>
                 <Navbar/>
             </div>
-            <div>
-                <BoxWeather/>
+            <div  className={cls.BoxWeather}>
+                <WeatherOneDayList />
+                <AirPollution/>
+                <WeatherFiveDayList/>
             </div>
         </div>
     );

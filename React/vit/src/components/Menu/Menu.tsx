@@ -1,10 +1,10 @@
 import {classNames} from "../../helpers/ClassNames/ClassNames.ts";
 import cls from './Menu.module.scss'
-import {MySwitherTheme} from "../MySwitcherTheme/MySwitherTheme.tsx";
-import {MySwitcherLang} from "../MySwitherLang/MySwitcherLang.tsx";
+import {MySwitcherTheme} from "../MySwitcherTheme/MySwitсherTheme.tsx";
+import {MySwitcherLang} from "../MySwitсherLang/MySwitcherLang.tsx";
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {authSlice} from "../../store/reducer/AuthSlice.ts";
-import {useAppDispath} from "../../hooks/redux.ts";
+import {useAppDispatch} from "../../hooks/redux.ts";
 import {Button} from "../MyButton/MyButton.tsx";
 
 interface MenuProps {
@@ -16,7 +16,7 @@ interface MenuProps {
 export const Menu = ({className, active}: MenuProps) => {
     const [login, setLogin] = useState<string | null>(null);
     const {authToggle} = authSlice.actions
-    const dispath = useAppDispath()
+    const dispath = useAppDispatch()
     const handleButtonClick = () => {
         dispath(authToggle());
         localStorage.clear()
@@ -44,7 +44,7 @@ export const Menu = ({className, active}: MenuProps) => {
                 <div className={cls.MenuLogin}>
                     {login}
                 </div>
-                <MySwitherTheme/>
+                <MySwitcherTheme/>
                 <MySwitcherLang/>
                 <Button className={cls.Button} onClick={handleButtonClick}>Выйти</Button>
             </div>

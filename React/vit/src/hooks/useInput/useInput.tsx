@@ -1,10 +1,10 @@
 import React, {InputHTMLAttributes, useState} from "react";
-import {IValidation, UseValidation, UseValidationResult} from "../useValidation/useValidation.tsx";
+import {IValidation, useValidation, useValidationResult} from "../useValidation/useValidation.tsx";
 
-interface useInputResult extends UseValidationResult{
+interface useInputResult extends useValidationResult{
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onBlur: () => void
     isDirty: boolean,
     saveToLocalStorage?: (() => void) | undefined
 }
@@ -22,14 +22,14 @@ export const useInput = ({initialValue, validations,}: useInputProps): useInputR
         minLengthError,
         maxLengthError,
         passwordError
-    } = UseValidation({ value, validation: validations });
+    } = useValidation({ value, validation: validations });
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
     }
 
     // @ts-ignore
-    const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onBlur = () => {
         setIsDirty(!isDirty)
     }
 

@@ -7,17 +7,12 @@ export interface IRoute {
     element:  ReactElement
 }
 
-
-
-const loginPageComponent = <LoginPage />
-const mainPageComponent = <MainPage />
-
 export const publicRoute: IRoute[] = [
-    {path: '/login', element: loginPageComponent}
+    {path: '/login', element:  <LoginPage />}
 ]
 
-export const privatRoute: IRoute[] = [
-    {path: '/', element: mainPageComponent}
+export const privateRoute: IRoute[] = [
+    {path: '/', element: <MainPage />}
 ]
 
 

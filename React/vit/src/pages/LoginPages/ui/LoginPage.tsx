@@ -3,10 +3,10 @@ import cls from './LoginPage.module.scss'
 import {MyInput} from "../../../components/MyInput/MyInput.tsx";
 import {useTranslation} from "react-i18next";
 import {authSlice} from "../../../store/reducer/AuthSlice.ts";
-import {useAppDispath} from "../../../hooks/redux.ts";
+import {useAppDispatch} from "../../../hooks/redux.ts";
 import {Button} from "../../../components/MyButton/MyButton.tsx";
 import {useInput} from "../../../hooks/useInput/useInput.tsx";
-import {MySwitcherLang} from "../../../components/MySwitherLang/MySwitcherLang.tsx";
+import {MySwitcherLang} from "../../../components/MySwitсherLang/MySwitcherLang.tsx";
 import {useAvatar} from "../../../hooks/useAvatar/useAvatar.tsx";
 import {useEffect, useState} from "react";
 
@@ -17,7 +17,7 @@ interface LoginPageProps {
 const LoginPage = ({className}: LoginPageProps) => {
     const {t} = useTranslation()
     const {authToggle} = authSlice.actions
-    const dispath = useAppDispath()
+    const dispath = useAppDispatch()
     const {image, handleImageChange} = useAvatar({initialValue: null})
     const [errorRepeatPassword, setErrorRepeatPassword] = useState('Неправильно')
 
@@ -105,7 +105,7 @@ const LoginPage = ({className}: LoginPageProps) => {
             <MyInput
                 className={cls.Input}
                 onChange={e => login.onChange(e)}
-                onBlur={e => login.onBlur(e)}
+                onBlur={() => login.onBlur()}
                 value={login.value}
                 type={'text'}
                 placeholder={t('Логин')}
@@ -122,7 +122,7 @@ const LoginPage = ({className}: LoginPageProps) => {
             <MyInput
                 className={cls.Input}
                 onChange={e => password.onChange(e)}
-                onBlur={e => password.onBlur(e)}
+                onBlur={() => password.onBlur()}
                 value={password.value}
                 type={'password'}
                 placeholder={t('Введите пароль')}
@@ -131,7 +131,7 @@ const LoginPage = ({className}: LoginPageProps) => {
             <MyInput
                 className={cls.Input}
                 onChange={e => passwordRepeat.onChange(e)}
-                onBlur={e => passwordRepeat.onBlur(e)}
+                onBlur={() => passwordRepeat.onBlur()}
                 value={passwordRepeat.value}
                 type={'password'}
                 placeholder={t('Повторите пароль')}

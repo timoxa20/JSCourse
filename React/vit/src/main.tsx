@@ -5,7 +5,7 @@ import './components/i18n/i18n.ts'
 import ThemeProvidet from "./navigation/ThemeProvider/ThemeProvider.tsx";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
-import {setupStore} from "./store/store.ts";
+import { setupStore} from "./store/store.ts";
 
 const store = setupStore()
 

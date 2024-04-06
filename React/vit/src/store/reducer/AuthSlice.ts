@@ -16,15 +16,12 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        authToggle: state => {
-            state.auth = !state.auth;
-        },
         setCity: (state, action: PayloadAction<string>) => {
             state.city = action.payload;
         }
     }
 });
 
-export const {authToggle, setCity} = authSlice.actions;
+export const { setCity} = authSlice.actions;
 
 export default authSlice.reducer;

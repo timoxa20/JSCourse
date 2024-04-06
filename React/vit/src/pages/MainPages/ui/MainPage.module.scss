@@ -1,4 +1,11 @@
 .MainPage {
+  height: 100vh;
   position: relative;
   padding: 0 20px;
+}
+.BoxWeather {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
