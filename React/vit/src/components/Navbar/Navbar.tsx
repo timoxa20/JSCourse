@@ -27,7 +27,7 @@ interface showDropdaunCity {
 export const Navbar = ({className}: NavbarProps) => {
 
     const search = useInput({
-        initialValue: '',
+        initialValue: 'Moscow',
         validations: {}
     })
     const debounce = useDebounce(search.value, 1000)
@@ -35,11 +35,13 @@ export const Navbar = ({className}: NavbarProps) => {
     const [showDropdaun, setshowDropdaun] = useState<showDropdaunCity | null>(null)
     const dispatch = useDispatch()
     const cityName = useAppSelector(state => state.auth.city)
+
+
     useEffect(() => {
         const params = {
             name: cityName,
         }
-        if(debounce) {
+        if(debounce && debounce.trim() !== "") {
             // @ts-ignore
             dispatch(fetchCityApi(params))
         }

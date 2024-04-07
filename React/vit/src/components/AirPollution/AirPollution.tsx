@@ -23,7 +23,9 @@ export const AirPollution: FC<IParams> = ( ) => {
             appid: '7e56ecfdfba4576dad0f22b5d28528d7',
             lang: t("ru"),
         };
-        dispatch(fetchWeatherAirPollutionApi(params));
+        if(city.trim() !== '') {
+            dispatch(fetchWeatherAirPollutionApi(params));
+        }
     }, [dispatch, t, city, weather.weather]);
 
     return (

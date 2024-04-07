@@ -18,7 +18,10 @@ export const WeatherOneDayList: FC<IParams> = ( ) => {
             appid: '7e56ecfdfba4576dad0f22b5d28528d7',
             lang: t("ru"),
         };
-        dispatch(fetchWeatherApi(params));
+        if (city.trim() !== '') {
+            dispatch(fetchWeatherApi(params));
+
+        }
     }, [dispatch, t, city]);
 
     return (
