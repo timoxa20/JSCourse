@@ -5,7 +5,8 @@ import './components/i18n/i18n.ts'
 import ThemeProvidet from "./navigation/ThemeProvider/ThemeProvider.tsx";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
-import { setupStore} from "./store/store.ts";
+import {persistor, setupStore} from "./store/store.ts";
+import {PersistGate} from "redux-persist/integration/react";
 
 const store = setupStore()
 
@@ -14,7 +15,9 @@ render(
       <BrowserRouter>
           <ThemeProvidet>
               <Provider store={store}>
+                  <PersistGate persistor={persistor}>
                   <App />
+                  </PersistGate>
               </Provider>
           </ThemeProvidet>
       </BrowserRouter>
