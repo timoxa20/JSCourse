@@ -7,8 +7,6 @@ import {useTranslation} from "react-i18next";
 import {IParams} from "../../@types/weather.ts";
 
 
-
-
 export const WeatherOneDayList: FC<IParams> = ( ) => {
     const city = useAppSelector(state => state.auth.city);
     const weather = useAppSelector(state => state.weather);

@@ -4,10 +4,9 @@ import {City, ICityParams} from "../../@types/city.ts";
 
 export const fetchCityApi = createAsyncThunk<City, ICityParams>(
     'city/fetchCityData',
-    async (params) => {
+    async (params: ICityParams) => {
         const response = await $apiCity.get('/city', {
             params: params,
-            headers: { 'X-Api-Key': 'qBp16x6JNuuqybKVoQWFdQ==g593kyubtOmB5XnE' }
         });
         return response.data;
     }

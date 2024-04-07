@@ -30,29 +30,28 @@ export const Navbar = ({className}: NavbarProps) => {
         initialValue: '',
         validations: {}
     })
-    const debounce = useDebounce(search.value)
+    const debounce = useDebounce(search.value, 1000)
     const [menuActiv, setMenuActiv] = useState(true)
     const [showDropdaun, setshowDropdaun] = useState<showDropdaunCity | null>(null)
     const dispatch = useDispatch()
-    const city = useAppSelector(state => state.city.city)
     const cityName = useAppSelector(state => state.auth.city)
-console.log(city)
     useEffect(() => {
         const params = {
             name: cityName,
-            limit:4,
         }
-        dispatch(fetchCityApi(params))
-    }, [search, debounce, cityName]);
-
-    // @ts-ignore
+        if(debounce) {
+            // @ts-ignore
+            dispatch(fetchCityApi(params))
+        }
+    }, [debounce, cityName]);
 
 
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         search.onChange(e);
-        dispatch(setCity(e.target.value))
     }
-
+    useEffect(() => {
+        dispatch(setCity(debounce))
+    }, [debounce]);
     const onClickDropDaun = (name: string) => {
         dispatch(setCity(name))
         setshowDropdaun(null);
@@ -69,7 +68,7 @@ console.log(city)
                 <MyInput
                     className={cls.Input}
                     type={'search'}
-                    value={cityName}
+                    value={search.value}
                     onChange={onChangeValue}
                 />
                 {showDropdaun?.data && showDropdaun.data.length > 0 && (

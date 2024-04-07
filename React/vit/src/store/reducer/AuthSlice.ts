@@ -24,4 +24,5 @@ export const authSlice = createSlice({
 
 export const { setCity} = authSlice.actions;
 
+
 export default authSlice.reducer;
